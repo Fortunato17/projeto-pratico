@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root{
+    --cor-primaria: #10B981; 
+    --verde-escuro: #047857;/*Footer, 1ª posição, etc*/
+    --cor-fundo-claro: #F9FAFB;
+    --cor-texto-principal: #1F2937;/*Títulos, textos importantes*/
+    --cor-texto-secundario: #6B7280;
+    --cor-erro: #EF4444;
+    --cor-verdeClaro: #D1FAE5;/*Bordas, hover, toques suaves com verde*/
+    --cor-amarelo: #FFE101;/*Fila demorada*/
+    --cor-verdeAmarelo: #ADFF2F;/*Posição próxima*/
+}
