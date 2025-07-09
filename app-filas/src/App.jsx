@@ -6,7 +6,7 @@ function App() {
   const [msg, setMsg] = useState(`Olá mundo!`);
   const [n, setN] = useState(true);
   function mudarMsg() {
-    //setMsg(msg === "Olá mundo!" ? "Mudou a mensagem!" : "Olá mundo!");
+    //setMsg(msg === "Olá mundo 2!" ? "Mudou a mensagem!" : "Olá mundo 2!");
     if (n) {
       setMsg("Mudou a mensagem!");
     } else {
