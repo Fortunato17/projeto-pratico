@@ -1,6 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins;
+}
 :root{
     --cor-primaria: #10B981; 
     --verde-escuro: #047857;/*Footer, 1ª posição, etc*/
