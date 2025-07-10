@@ -13,14 +13,13 @@ export default function HomePage() {
             <span className="font-extrabold italic">ESPERA</span>
           </h1>
           <p className=" text-center">
-            Com o <span className="font-extrabold ">AppFilas</span>, entra em filas
-            digitais, acompanha sua posição em tempo real e ganha tempo. Sem
-            precisar estar no local.
+            Com o <span className="font-extrabold ">AppFilas</span>, entra em
+            filas digitais, acompanha sua posição em tempo real e ganha tempo.
+            Sem precisar estar no local.
           </p>
           <div className="flex flex-col items-center w-full gap-[10px]">
             <button className="flex items-center justify-center bg-[var(--cor-branco)] text-[var(--cor-primaria)] font-semibold w-full h-[40px] rounded-[10px]">
-
-                <Plus />
+              <Plus />
               Nova fila
             </button>
             <button className="flex items-center justify-center bg-[var(--cor-primaria)] text-[var(--cor-branco)] font-semibold w-full h-[40px] rounded-[10px] border-[1px] border-solid border-[var(--cor-branco)]">
@@ -30,24 +29,56 @@ export default function HomePage() {
           </div>
         </div>
       </header>
-      <main className="p-[40px_0px_80px_0px] flex flex-col gap-[80px] w-full">
+      <main className="p-[40px_0px_80px_0px] flex flex-col gap-[80px] w-">
         <section className="flex flex-col gap-[10px] m-[0px_20px]">
-            <h1 className="text-[24px] leading-[20px] ">Somos a sua melhor <span className="font-extrabold italic">ESCOLHA</span></h1>
+          <h1 className="text-[24px] leading-[20px] ">
+            Somos a sua melhor{" "}
+            <span className="font-extrabold italic">ESCOLHA</span>
+          </h1>
 
-            <p>Porque seu tempo importa, sua experiência conta e sua tranquilidade vale mais. Com o <span className="font-extrabold ">AppFilas</span>, você evita filas, organiza sua rotina e vive com mais liberdade. Escolher o melhor não é luxo é inteligência.</p>
+          <p>
+            Porque seu tempo importa, sua experiência conta e sua tranquilidade
+            vale mais. Com o <span className="font-extrabold ">AppFilas</span>,
+            você evita filas, organiza sua rotina e vive com mais liberdade.
+            Escolher o melhor não é luxo é inteligência.
+          </p>
         </section>
         <section className="flex flex-col items justify-center gap-[10px] bg-[var(--cor-verde-escuro)] p-[40px_20px] text-[var(--cor-branco)] w-full h-[700px]">
-            <h1 className="text-[40px] leading-[41px] font-extrabold">Chega de perder tempo em <span className="italic">filas!</span></h1>
-            <p className="text-[24px] leading-[30px]">Com o AppFilas, você entra na fila direto do telefone ou pc e acompanha seu avanço em tempo real. Mais agilidade, menos estresse.</p>
+          <h1 className="text-[40px] leading-[41px] font-extrabold">
+            Chega de perder tempo em <span className="italic">filas!</span>
+          </h1>
+
+          <p className="text-[24px] leading-[30px]">
+            Com o <span className="font-extrabold">AppFilas</span>, você entra
+            na fila direto do telefone ou pc e acompanha seu avanço em tempo
+            real. Mais agilidade, menos estresse.
+          </p>
         </section>
-        <section className="locais">
-            <h1>FILAS online em:</h1>
-            <div className="">
-                <div className="item"></div>
-                <div className="item"></div>
-                <div className="item"></div>
-                <div className="item"></div>
+        <section className="flex flex-col gap-[10px] p-[0px_20px] ">
+          <h1 className="text-[24px] leading-[20px] font-bold">
+            FILAS online em:
+          </h1>
+          <div className="flex flex-col gap-[10px] ">
+            <div className="rounded-[10px] h-[290px] bg-[var(--cor-primaria)]"></div>
+            <div className="rounded-[10px] h-[290px] bg-[var(--cor-primaria)]"></div>
+            <div className="rounded-[10px] h-[290px] bg-[var(--cor-primaria)]"></div>
+            <div className="rounded-[10px] h-[290px] bg-[var(--cor-primaria)]"></div>
+          </div>
+        </section>
+
+        <section>
+          <div className="flex flex-col gap-[10px] p-[0px_20px]">
+            <h2 className="text-[20px] leading-[20px] font-bold text-[var(--cor-primaria)]">
+              Para Instituições:
+            </h2>
+            <div className="flex flex-col gap-[10px]">
+              <div className="rounded-[10px] border-[1px] border-solid border-[var(--cor-primaria)] h-[290px] bg-[var(--cor-branco)] ">
+                Sua instituição/empresa com menos filas, mais
+                eficiência.Junte-se ao AppFilas e ofereça uma experiência
+                moderna aos seus clientes.
+              </div>
             </div>
+          </div>
         </section>
       </main>
     </div>
