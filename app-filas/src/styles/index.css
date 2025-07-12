@@ -6,19 +6,26 @@
     padding: 0;
     box-sizing: border-box;
     font-family: poppins;
+    user-select: auto;
+    
 }
-
+html{
+    color: var(--cor-texto-principal);
+}
 :root{
     /*CORES:*/
     --cor-primaria: #10B981; 
     --cor-verde-escuro: #047857;/*Footer, 1ª posição, etc*/
     --cor-fundo-claro: #F9FAFB;
-    --cor-texto-principal: #1F2937;/*Títulos, textos importantes*/
+    --cor-texto-principal: #182d4b;/*Títulos, textos importantes*/
     --cor-texto-secundario: #6B7280;
     --cor-erro: #EF4444;
     --cor-verdeClaro: #D1FAE5;/*Bordas, hover, toques suaves com verde*/
     --cor-amarelo: #FFE101;/*Fila demorada*/
     --cor-verdeAmarelo: #ADFF2F;/*Posição próxima*/
     --cor-branco: #FFFFFF;
+    
+    /*SOMBRA*/
+    --sombra: 4px 4px 4px rgba(0, 0, 0, 0.291);
     
 }
