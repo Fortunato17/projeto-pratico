@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Nav from "../../components/cliente/Nav";
 import styles from "../../styles/cliente.module.css";
-import Footer from "../../components/footer";
+import Footer from "../../components/Footer";
 export default function HomePage() {
   return (
     <div>
