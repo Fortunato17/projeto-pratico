@@ -4,7 +4,7 @@ import FaleConnoscoPage from "./pages/cliente/FaleConnoscoPage"
 export default function PageRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<FaleConnoscoPage />}/>
+            <Route path="/" element={<HomePage />}/>
         </Routes>
     )
 }

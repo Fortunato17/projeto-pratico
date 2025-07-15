@@ -8,6 +8,7 @@ import {
   HeaderButton2,
 } from "../../components/cliente/ClienteButton";
 import Carrossel from "../../components/cliente/Carrossel";
+import Main from "../../components/Main";
 export default function HomePage() {
   return (
     <div>
@@ -38,8 +39,7 @@ export default function HomePage() {
       </Header>
 
       {/*#####################################################################*/}
-
-      <main className="p-[40px_0px_80px_0px] flex flex-col gap-[80px]">
+      <Main>
         <section className="flex flex-col gap-[10px] p-[0px_20px]">
           <h1 className="text-[24px] leading-[30px] ">
             Somos a sua melhor{" "}
@@ -97,7 +97,7 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-      </main>
+      </Main>
 
       {/*#####################################################################*/}
       <Footer />

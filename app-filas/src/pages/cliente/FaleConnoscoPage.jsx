@@ -1,30 +1,16 @@
-import { useEffect, useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import Main from "../../components/Main";
 import Nav from "../../components/Nav";
 
 export default function FaleConnoscoPage() {
-  const [g, setG] = useState(0);
-  useEffect(() => {
-   setInterval(() => {
-      setG((prev) => prev + 1);
-    }, 1000);
-
-    
-  }, []);
   return (
     <div>
       <Header>
         <Nav />
       </Header>
-      <main className="p-[40px_0px_80px_0px] flex flex-col gap-[80px]">
-        <section className="flex flex-col gap-[20px] p-[0px_20px]">
-          <section className="flex flex-col items-center">
-            <div className="font-bold">{g}</div>
-            <button className="bg-[var(--cor-primaria)] p-[15px] text-[var(--cor-branco)] font-bold rounded-[10px]">
-              Clique aqui
-            </button>
-          </section>
+      <Main>
+      <section className="flex flex-col gap-[20px] p-[0px_20px]">
           <div>
             <h1 className="text-[24px] leading-[30px] font-extrabold">
               Fale Connosco
@@ -63,7 +49,8 @@ export default function FaleConnoscoPage() {
             <span className="font-extrabold ">AppFilas</span>.
           </p>
         </section>
-      </main>
+      </Main>
+      
       <Footer />
     </div>
   );
