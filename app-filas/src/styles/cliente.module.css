@@ -1,18 +1,2 @@
-.headerContainer {
-  width: 100%;
-  padding: 20px 20px 40px 20px;
-  background-color: var(--cor-primaria);
-  
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--cor-branco);
-  color: var(--cor-primaria);
-  width: 100%;
-  padding: 10px 20px;
-  border-radius: 20px;
-  overflow: hidden;
-  
-}
+
+
