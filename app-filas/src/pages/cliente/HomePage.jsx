@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <div>
       <Header>
-        <Nav />
+        
 
         <div className="flex flex-col items-center gap-[10px] mt-[40px] text-[var(--cor-branco)]">
           <h1 className="text-[40px] leading-[41px] text-center">

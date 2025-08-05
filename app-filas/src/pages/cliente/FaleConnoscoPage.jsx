@@ -6,11 +6,10 @@ import Nav from "../../components/Nav";
 export default function FaleConnoscoPage() {
   return (
     <div>
-      <Header>
-        <Nav />
-      </Header>
+      <Header />
+
       <Main>
-      <section className="flex flex-col gap-[20px] p-[0px_20px]">
+        <section className="flex flex-col gap-[20px] p-[0px_20px]">
           <div>
             <h1 className="text-[24px] leading-[30px] font-extrabold">
               Fale Connosco
@@ -50,7 +49,7 @@ export default function FaleConnoscoPage() {
           </p>
         </section>
       </Main>
-      
+
       <Footer />
     </div>
   );
