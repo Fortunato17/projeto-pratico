@@ -160,7 +160,9 @@ export default function NovaFilaPage() {
               <h2 className="text-[20px] leading-[24px]">Serviço</h2>
               <div className=" border-[0.5px] border-solid border-[var(--cor-borda)] rounded-[10px] p-[20px] shadow-[0px_3px_6px_0.5px_rgba(0,0,0,0.25)]">
                 <ul className="flex flex-col gap-[10px] pt-[5px] pr-[5px] max-h-[400px] overflow-auto will-change-transform">
-                  {empresaSelecionada.servicos.map((servico) => (
+                  {[...empresaSelecionada.servicos]
+                  .sort((a, b) => a.localeCompare(b))
+                  .map((servico) => (
                     <li
                       key={servico}
                       className=" border-[0.5px] border-solid border-[var(--cor-borda)] rounded-[10px] p-[10px] cursor-pointer hover:bg-[var(--cor-verdePastel)] hover:translate-y-[-2.5px] transition-all duration-300 ease-in"
