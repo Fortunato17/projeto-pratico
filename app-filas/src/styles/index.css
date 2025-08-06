@@ -26,6 +26,7 @@ html{
     --cor-amarelo: #FFE101;/*Fila demorada*/
     --cor-verdeAmarelo: #ADFF2F;/*Posição próxima*/
     --cor-branco: #FFFFFF;
+    --cor-hoverBtn1: #26da9e;
     
     /*SOMBRA*/
     --sombra: 4px 4px 4px rgba(0, 0, 0, 0.291);
