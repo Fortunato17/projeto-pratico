@@ -17,12 +17,13 @@ import {
   empresaComFila,
 } from "../../Dados";
 import { useMemo, useState } from "react";
+import { ConfirmarButton } from "../../components/cliente/ClienteButton";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
   const [pesquisa, setPesquisa] = useState("");
   const [dropdownAberto, setDropdownAberto] = useState(null);
-  const [filtro, setFiltro] = useState("");
+  const [filtro, setFiltro] = useState("Todas");
   const [itemSelecionado, setItemSelecionado] = useState({
     empresa: null,
     servico: null,
@@ -50,8 +51,11 @@ export default function NovaFilaPage() {
 
   const handleSelecionarEmpresa = (empresaParam) => {
     if (itemSelecionado.empresa?.id !== empresaParam.id) {
-      setItemSelecionado((prev) => ({ ...prev, empresa: empresaParam }));
-      setItemSelecionado((prev) => ({ ...prev, servico: null }));
+      setItemSelecionado({
+        empresa: empresaParam,
+        servico: null,
+      });
+      setPesquisa("");
       setVisivel(true);
     } else {
       setItemSelecionado((prev) => ({ ...prev, empresa: null }));
@@ -75,6 +79,23 @@ export default function NovaFilaPage() {
       )}\nMunicípio: ${itemSelecionado.empresa.endereco.municipio}\nBairro: ${
         itemSelecionado.empresa.endereco.bairro
       }\nRua: ${itemSelecionado.empresa.endereco.rua}`
+    );
+  };
+
+  /**OUTRAS FUNÇÕES */
+  const destaqueNaPesquisa = (busca, titulo) => {
+    if (!busca) {
+      return titulo;
+    }
+    const partes = titulo.split(new RegExp(`(${busca})`, "i"));
+    return partes.map((parte, i) =>
+      parte.toLowerCase() === busca.toLowerCase() ? (
+        <span key={i} className="text-[var(--cor-primaria)]">
+          {parte}
+        </span>
+      ) : (
+        <span key={i}>{parte}</span>
+      )
     );
   };
 
@@ -202,7 +223,9 @@ export default function NovaFilaPage() {
                           } }`}
                           onClick={() => handleSelecionarEmpresa(empresa)}
                         >
-                          <div className="font-bold">{empresa.nome}</div>
+                          <div className="font-bold">
+                            {destaqueNaPesquisa(pesquisa, empresa.nome)}
+                          </div>
                           <div className="flex items-center text-[14px] text-[var(--cor-texto-secundario)]">
                             <MapPin size={16} strokeWidth={1.5} />
                             {pegarProvincia(empresa.endereco.provinciaId)},{" "}
@@ -223,10 +246,10 @@ export default function NovaFilaPage() {
             <section className="flex flex-col gap-[10px]">
               <h2 className="text-[20px] leading-[24px]">Serviço</h2>
               <div
-                className={`flex justify-between items-center border-[0.5px] border-solid ${
+                className={`flex justify-between items-center  border-solid ${
                   dropdownAberto === "Serviço"
                     ? "border-[1.5px] border-[var(--cor-primaria)] bg-[var(--cor-verdePastel)]"
-                    : "border-[var(--cor-borda)]"
+                    : "border-[0.5px] border-[var(--cor-borda)]"
                 }  rounded-[10px] p-[10px_20px] cursor-pointer hover:bg-[var(--cor-verdePastel)]`}
                 onClick={() => handleToggleDropdown("Serviço")}
               >
@@ -283,13 +306,10 @@ export default function NovaFilaPage() {
           )}
 
           {itemSelecionado.empresa && itemSelecionado.servico && (
-            <button
-              className="flex justify-center items-center gap-[5px] p-[10px] bg-[var(--cor-primaria)] text-[white] rounded-[10px] hover:bg-[var(--cor-hoverBtn1)] btn"
-              onClick={() => handleEnviar()}
-            >
+            <ConfirmarButton className="botao-clique" handle={handleEnviar} >
               <CheckCheck />
               <span className="font-semibold">Confirmar</span>
-            </button>
+            </ConfirmarButton>
           )}
         </section>
       </Main>

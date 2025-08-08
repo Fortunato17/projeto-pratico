@@ -12,3 +12,13 @@ export function HeaderButton2({ children }) {
     </button>
   );
 }
+export function ConfirmarButton({ handle, children, className = "" }) {
+  return (
+    <button
+      className={`w-full flex justify-center items-center gap-[5px] p-[10px] bg-[var(--cor-primaria)] text-[var(--cor-branco)] rounded-[10px] hover:bg-[var(--cor-hoverBtn1)] ${className} `}
+      onClick={() => handle()}
+    >
+      {children}
+    </button>
+  );
+}

@@ -11,6 +11,7 @@ import {
   MapPin,
   MoveDownIcon,
 } from "lucide-react";
+import { ConfirmarButton } from "../../components/cliente/ClienteButton";
 export default function TestePage() {
   //Hooks
   const [busca, setBusca] = useState("");
@@ -64,6 +65,11 @@ export default function TestePage() {
   const handleEnviar = () => {
     alert(
       `Empresa: ${empresaSelecionada.nome}\nProvíncia: ${provinciaSelecionada}\nServiço: ${servicoSelecionado}`
+    );
+  };
+  const handleMostrar = () => {
+    alert(
+      `Empresa: ${empresaSelecionada.nome}`
     );
   };
 
@@ -248,20 +254,10 @@ export default function TestePage() {
       )}
       {/*BUTTON */}
       {empresaSelecionada && servicoSelecionado && (
-        <button
-          onClick={handleEnviar}
-          style={{
-            marginTop: 20,
-            padding: "10px 20px",
-            backgroundColor: "#28a745",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-        >
+        <ConfirmarButton handle={handleEnviar}>
           Enviar Escolha
-        </button>
+        </ConfirmarButton>
+        
       )}
     </div>
   );
