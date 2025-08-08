@@ -103,7 +103,7 @@ export default function NovaFilaPage() {
     <div>
       <Header />
       <Main>
-        <section className="flex flex-col gap-[20px] p-[0px_20px]">
+        <section className="flex flex-col gap-[10px] p-[0px_20px]">
           <h1 className="text-[24px] leading-[30px] font-extrabold">
             Nova fila
           </h1>
