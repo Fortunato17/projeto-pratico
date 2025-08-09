@@ -3,6 +3,7 @@ import Nav from "../../components/Nav";
 import styles from "../../styles/cliente.module.css";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
+import Layout from "../../components/Layout";
 import {
   HeaderButton1,
   HeaderButton2,
@@ -11,7 +12,7 @@ import Carrossel from "../../components/cliente/Carrossel";
 import Main from "../../components/Main";
 export default function HomePage() {
   return (
-    <div>
+    <Layout>
       <Header>
         
 
@@ -101,6 +102,6 @@ export default function HomePage() {
 
       {/*#####################################################################*/}
       <Footer />
-    </div>
+    </Layout>
   );
 }

@@ -10,7 +10,9 @@
 }
 html {
   color: var(--cor-texto-principal);
+  
 }
+
 :root {
   /*CORES:*/
   --cor-primaria: #10b981;

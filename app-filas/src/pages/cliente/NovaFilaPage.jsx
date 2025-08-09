@@ -18,6 +18,7 @@ import {
 } from "../../Dados";
 import { useMemo, useState } from "react";
 import { ConfirmarButton } from "../../components/cliente/ClienteButton";
+import Layout from "../../components/Layout";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
@@ -100,7 +101,8 @@ export default function NovaFilaPage() {
   };
 
   return (
-    <div>
+    
+    <Layout>
       <Header />
       <Main>
         <section className="flex flex-col gap-[10px] p-[0px_20px]">
@@ -314,6 +316,6 @@ export default function NovaFilaPage() {
         </section>
       </Main>
       <Footer />
-    </div>
+    </Layout>
   );
 }

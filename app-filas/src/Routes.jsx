@@ -6,7 +6,7 @@ import  TestePage  from "./pages/cliente/TestePage";
 export default function PageRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<NovaFilaPage/>}/>
+            <Route path="/" element={<FaleConnoscoPage/>}/>
         </Routes>
     )
 }

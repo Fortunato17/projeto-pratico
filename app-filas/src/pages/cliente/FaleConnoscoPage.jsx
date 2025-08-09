@@ -2,10 +2,11 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
 import Nav from "../../components/Nav";
+import Layout from "../../components/Layout";
 
 export default function FaleConnoscoPage() {
   return (
-    <div>
+    <Layout>
       <Header />
 
       <Main>
@@ -51,6 +52,6 @@ export default function FaleConnoscoPage() {
       </Main>
 
       <Footer />
-    </div>
+    </Layout>
   );
 }
