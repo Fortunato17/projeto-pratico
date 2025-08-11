@@ -11,7 +11,8 @@ import {
   MapPin,
   MoveDownIcon,
 } from "lucide-react";
-import { ConfirmarButton } from "../../components/cliente/ClienteButton";
+import Button from "../../components/Button";
+//import { Button } from "../../components/Button";
 export default function TestePage() {
   //Hooks
   const [busca, setBusca] = useState("");
@@ -41,20 +42,19 @@ export default function TestePage() {
       setEmpresaSelecionada(empresa);
       setProvinciaSelecionada(pegarProvincia(empresa.endereco.provinciaId));
       setServicoSelecionado("");
-      setCardServicoSel(false)
+      setCardServicoSel(false);
     } else {
       setEmpresaSelecionada(null);
-      
     }
   };
-  const handleCardServicoSel = ()=>{
-    if(!cardServicoSel){
-      setCardServicoSel(true)
-    }else{
-      setCardServicoSel(false)
-      setServicoSelecionado(null)
+  const handleCardServicoSel = () => {
+    if (!cardServicoSel) {
+      setCardServicoSel(true);
+    } else {
+      setCardServicoSel(false);
+      setServicoSelecionado(null);
     }
-  }
+  };
   const handleSelecionarServico = (nome) => {
     if (servicoSelecionado !== nome) {
       setServicoSelecionado(nome);
@@ -68,9 +68,7 @@ export default function TestePage() {
     );
   };
   const handleMostrar = () => {
-    alert(
-      `Empresa: ${empresaSelecionada.nome}`
-    );
+    alert(`Empresa: ${empresaSelecionada.nome}`);
   };
 
   //************************************ */
@@ -187,77 +185,75 @@ export default function TestePage() {
       {/*CARD DE SERVIÇOS */}
 
       {empresaSelecionada && (
-        
         <div style={{ marginTop: 20 }}>
           <strong>Escolha um serviço:</strong>
           <div
             className="flex justify-between border-[1px] border-solid border-[#6B7280] rounded-[5px] mb-[5px] p-[8px] cursor-pointer"
-            onClick={() =>
-               handleCardServicoSel()
-            }
+            onClick={() => handleCardServicoSel()}
             style={{
-              border: cardServicoSel ? "2px solid var(--cor-verdeClaro)" : "1px solid #ccc",
+              border: cardServicoSel
+                ? "2px solid var(--cor-verdeClaro)"
+                : "1px solid #ccc",
               backgroundColor: cardServicoSel ? "#eaf4ff" : "#f9f9f9",
             }}
           >
             Selecionar... <ChevronDown />
           </div>
-          
-          {cardServicoSel === true && <div
-            style={{
-              padding: "10px",
-              border: "2px solid #6B7280",
-              borderRadius: "10px",
-            }}
-          >
+
+          {cardServicoSel === true && (
             <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                padding: "5px",
-                maxHeight: "400px",
-                overflow: "auto",
-                willChange: "transform", //elimina o problema do corte do primeiro item ao rolar para baixo e depois para cima
+                padding: "10px",
+                border: "2px solid #6B7280",
+                borderRadius: "10px",
               }}
             >
-              {empresaComFila(empresaSelecionada.id).map((servico) => {
-                const selecionado = servicoSelecionado === servico.nome;
-                return (
-                  <div
-                    key={servico.id}
-                    onClick={() => handleSelecionarServico(servico.nome)}
-                    style={{
-                      padding: "10px",
-                      borderRadius: "8px",
-                      border: selecionado
-                        ? "2px solid #007bff"
-                        : "1px solid #ccc",
-                      backgroundColor: selecionado ? "#eaf4ff" : "#f9f9f9",
-                      cursor: "pointer",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {servico.nome}
-                    <p className="flex justify-between font-normal text-[14px] text-[var(--cor-texto-secundario)]">
-                      Pessoas na fila
-                      <span className="text-[var(--cor-verde-escuro)] font-bold">
-                        {servico.pessoasNaFila}
-                      </span>
-                    </p>
-                  </div>
-                );
-              })}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                  padding: "5px",
+                  maxHeight: "400px",
+                  overflow: "auto",
+                  willChange: "transform", //elimina o problema do corte do primeiro item ao rolar para baixo e depois para cima
+                }}
+              >
+                {empresaComFila(empresaSelecionada.id).map((servico) => {
+                  const selecionado = servicoSelecionado === servico.nome;
+                  return (
+                    <div
+                      key={servico.id}
+                      onClick={() => handleSelecionarServico(servico.nome)}
+                      style={{
+                        padding: "10px",
+                        borderRadius: "8px",
+                        border: selecionado
+                          ? "2px solid #007bff"
+                          : "1px solid #ccc",
+                        backgroundColor: selecionado ? "#eaf4ff" : "#f9f9f9",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {servico.nome}
+                      <p className="flex justify-between font-normal text-[14px] text-[var(--cor-texto-secundario)]">
+                        Pessoas na fila
+                        <span className="text-[var(--cor-verde-escuro)] font-bold">
+                          {servico.pessoasNaFila}
+                        </span>
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>}
+          )}
         </div>
       )}
       {/*BUTTON */}
       {empresaSelecionada && servicoSelecionado && (
-        <ConfirmarButton handle={handleEnviar}>
-          Enviar Escolha
-        </ConfirmarButton>
-        
+        <Button handle={handleEnviar}>Enviar Escolha</Button>
       )}
     </div>
   );

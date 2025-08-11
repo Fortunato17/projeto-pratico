@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -12,31 +13,11 @@ html {
   color: var(--cor-texto-principal);
   
 }
-
-:root {
-  /*CORES:*/
-  --cor-primaria: #10b981;
-  --cor-verde-escuro: #047857; /*Footer, 1ª posição, etc*/
-  --cor-verdePastel: #e1ffea; /*hover, toques suaves com verde*/
-  --cor-fundo-claro: #f9fafb;
-  --cor-texto-principal: #182d4b; /*Títulos, textos importantes*/
-  --cor-texto-secundario: #6b7280;
-  --cor-borda: #6b7280a6;
-  --cor-erro: #ef4444;
-  --cor-verdeClaro: #7aecb2; /*Bordas com hover*/
-  --cor-amarelo: #ffe101; /*Fila demorada*/
-  --cor-verdeAmarelo: #adff2f; /*Posição próxima*/
-  --cor-branco: #ffffff;
-  --cor-hoverBtn1: #26da9e;
-
-  /*SOMBRA*/
-  --sombra: 4px 4px 4px rgba(0, 0, 0, 0.291);
-}
-.botao-clique {
-  transition: all 0.1s ease;
+body > div > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.botao-clique:active {
-  transform: scale(0.97);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.133) inset;
-}
+
+

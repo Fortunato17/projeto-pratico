@@ -41,7 +41,12 @@ export const empresas = [
       bairro: "Maianga",
       rua: "Av. Revolução",
     },
-    servicos: ["Depósito", "Levantamento", "Transferência"],
+    servicos: [
+      "Depósito",
+      "Levantamento",
+      "Transferência",
+      "Abertura de conta",
+    ],
   },
   {
     id: 5,
@@ -162,7 +167,12 @@ export const empresas = [
       bairro: "Finanças",
       rua: "Av. do Banco",
     },
-    servicos: ["Depósito", "Levantamento", "Transferência"],
+    servicos: [
+      "Depósito",
+      "Levantamento",
+      "Transferência",
+      "Abertura de conta",
+    ],
   },
   {
     id: 16,
@@ -173,7 +183,12 @@ export const empresas = [
       bairro: "Financeiro",
       rua: "Av. da Liberdade",
     },
-    servicos: ["Depósito", "Levantamento", "Transferência"],
+    servicos: [
+      "Depósito",
+      "Levantamento",
+      "Transferência",
+      "Abertura de conta",
+    ],
   },
   {
     id: 17,
@@ -184,7 +199,12 @@ export const empresas = [
       bairro: "Empresarial",
       rua: "Rua das Finanças",
     },
-    servicos: ["Depósito", "Levantamento", "Transferência"],
+    servicos: [
+      "Depósito",
+      "Levantamento",
+      "Transferência",
+      "Abertura de conta",
+    ],
   },
   {
     id: 18,
@@ -195,7 +215,12 @@ export const empresas = [
       bairro: "Centro",
       rua: "Rua Principal",
     },
-    servicos: ["Depósito", "Levantamento", "Transferência"],
+    servicos: [
+      "Depósito",
+      "Levantamento",
+      "Transferência",
+      "Abertura de conta",
+    ],
   },
 ];
 

@@ -1,0 +1,21 @@
+/*CONTAINER, ALINHAMENTO, aqui fica a organização estrutural da interface*/
+.container{
+    max-width: 1200px;
+    margin:  auto;
+}
+.titulo {
+  font-size: 24px;
+  line-height: 30px;
+  
+}
+.subTitulo {
+  font-size: 20px;
+  line-height: 24px;
+  
+}
+/*Tem no HOME*/
+.itemsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

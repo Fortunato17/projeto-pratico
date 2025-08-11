@@ -1,20 +1,16 @@
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
-import Nav from "../../components/Nav";
-import Layout from "../../components/Layout";
 
 export default function FaleConnoscoPage() {
   return (
-    <Layout>
+    <div>
       <Header />
 
       <Main>
-        <section className="flex flex-col gap-[20px] p-[0px_20px]">
+        <section className="flex flex-col gap-[20px]">
           <div>
-            <h1 className="text-[24px] leading-[30px] font-extrabold">
-              Fale Connosco
-            </h1>
+            <h1 className="titulo font-bold">Fale Connosco</h1>
             <p>
               Se tiveres dúvidas, sugestões ou precisares de ajuda com o uso da
               nossa plataforma, é só entrar em contacto connosco. A tua opinião
@@ -22,7 +18,7 @@ export default function FaleConnoscoPage() {
             </p>
           </div>
           <div>
-            <h2 className="text-[16px] leading-[24px] font-semibold">
+            <h2 className="subTitulo font-bold">
               Tem uma instituição e quer usar o nosso sistema?
             </h2>
             <p>
@@ -32,17 +28,25 @@ export default function FaleConnoscoPage() {
               clientes.
             </p>
           </div>
-          <h2 className="text-[16px] leading-[24px] font-semibold">
+          <h3 className="font-bold">
             Junte—se a nós e leve a sua instituição para o digital com segurança
             e inovação.
-          </h2>
+          </h3>
           <div>
-            <h3 className="text-[16px] leading-[24px] font-semibold">
-              Canais de Atendimento:{" "}
-            </h3>
-            <p>Email: appfilas@gmail.com </p>
-            <p>whatsApp: +244 944100 756</p>
-            <p>Horário de Atendimento: Segunda a Sexta, das 8h às 15h30.</p>
+            <h3 className="font-bold">Canais de Atendimento: </h3>
+            <ul className="list-disc list-inside">
+              <li>
+                <span className="font-semibold">Email:</span> appfilas@gmail.com
+              </li>
+              <li>
+                <span className="font-semibold">WhatsApp:</span> +244 944 100
+                756
+              </li>
+              <li>
+                <span className="font-semibold">Horário de Atendimento:</span>{" "}
+                Segunda a Sexta, das 8h às 15h20.
+              </li>
+            </ul>
           </div>
           <p>
             Agradecemos pela confiança! Equipa{" "}
@@ -52,6 +56,6 @@ export default function FaleConnoscoPage() {
       </Main>
 
       <Footer />
-    </Layout>
+    </div>
   );
 }
