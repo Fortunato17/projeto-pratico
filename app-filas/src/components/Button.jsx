@@ -1,4 +1,4 @@
-export default function Button({ children, variante = "", onClick }) {
+export default function Button({ children, loading, variante = "", onClick }) {
   const base =
     "flex items-center justify-center gap-[5px] w-full p-[8px] rounded-[10px] font-semibold botao-clique";
   const variantes = {
@@ -8,6 +8,9 @@ export default function Button({ children, variante = "", onClick }) {
       confirmar:"bg-[var(--cor-primaria)] text-[var(--cor-branco)] border-[1.5px]"
   };
   return (
-    <button className={`${base} ${variantes[variante]}`} onClick={onClick}>{children}</button>
+    <button className={`${base} ${variantes[variante]} ${
+        loading
+          ?  "opacity-10" : "opacity-100"
+      }`} onClick={onClick}>{children}</button>
   );
 }

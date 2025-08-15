@@ -12,6 +12,7 @@ export default function CardEmpresas({
 }) {
   // Pesquisa de empresas e filtro por província
   const resultado = useMemo(() => {
+    const termoDaPesquisa = pesquisa.trim().toLowerCase();
     return empresas
       .filter((empresa) => {
         const incluiProvin =
@@ -19,12 +20,12 @@ export default function CardEmpresas({
           pegarProvincia(empresa.endereco.provinciaId).includes(filtro);
         const incluiNome = empresa.nome
           .toLowerCase()
-          .includes(pesquisa.trim().toLowerCase());
+          .includes(termoDaPesquisa);
         const nomeVisivel = visivel ? itemSelecionado.empresa?.id === empresa.id : true;
         return incluiNome && incluiProvin && nomeVisivel;
       })
       .sort((a, b) => a.nome.localeCompare(b.nome));
-  }, [pesquisa, filtro, visivel, itemSelecionado.empresa]);
+  }, [pesquisa, filtro, visivel, itemSelecionado.empresa?.id]);
 
   /**EVENTOS */
   const handleSelecionarEmpresa = (empresaParam) => {
@@ -56,23 +57,22 @@ export default function CardEmpresas({
       )
     );
   };
+  
   return (
-    <div className=" border-[0.5px] border-solid border-[var(--cor-borda)] rounded-[10px] p-[20px] shadow-[0px_3px_6px_0.5px_rgba(0,0,0,0.25)]">
-      <ul className="  itemsSection pt-[5px] pr-[5px] max-h-[350px] overflow-auto will-change-transform">
+    <div className="caixa-lista">
+      <ul className="lista-scroll">
         {resultado.length === 0 ? (
           <li className="text-[var(--cor-erro)]">
             Nenhum resultado encontrado!!
           </li>
         ) : (
           resultado.map((empresa) => {
-            const selecionada = itemSelecionado.empresa?.id === empresa.id;
+            const selecionado = itemSelecionado.empresa?.id === empresa.id;
             return (
               <li
                 key={empresa.id}
-                className={`border-[0.5px] border-solid border-[var(--cor-borda)] rounded-[10px] p-[10px] cursor-pointer hover:translate-y-[-2.5px] ${
-                  selecionada
-                    ? "border-[1.5px] border-[var(--cor-primaria)] bg-[var(--cor-verdePastel)]"
-                    : "hover:bg-[var(--corHover)]"
+                className={`item-lista item-lista-hover ${
+                  selecionado ? "item-lista-selecionado" : ""
                 }`}
                 onClick={() => handleSelecionarEmpresa(empresa)}
               >

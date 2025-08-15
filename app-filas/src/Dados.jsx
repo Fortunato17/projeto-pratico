@@ -251,6 +251,7 @@ export const filas = empresas.flatMap((empresa) => {
   });
 });
 
+//Função para pegar as filas de uma empresa, que retorna um novo array por causa do filter
 export function empresaComFila(id) {
   return filas.filter((fila) => fila.empresaId === id);
 }

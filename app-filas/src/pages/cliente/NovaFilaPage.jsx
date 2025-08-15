@@ -1,12 +1,5 @@
 // ÍCONES
-import {
-  CheckCheck,
-  ChevronDown,
-  ChevronUp,
-  MapPin,
-  Search,
-  UsersRound,
-} from "lucide-react";
+import { CheckCheck, Search, UsersRound } from "lucide-react";
 // DADOS
 import { pegarProvincia } from "../../Dados";
 //HOOKS
@@ -19,30 +12,38 @@ import Button from "../../components/Button";
 import FiltroProv from "../../components/cliente/NovaFilaPage/FiltroProv";
 import CardEmpresas from "../../components/cliente/NovaFilaPage/CardEmpresas";
 import CardSevico from "../../components/cliente/NovaFilaPage/CardSevico";
+import FilaSpinner from "../../components/QueueLoader/QueueLoader";
+import SpinnerPontosVerdes from "../../components/QueueLoader/QueueLoader";
+import QueueLoader from "../../components/QueueLoader/QueueLoader";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
   const [pesquisa, setPesquisa] = useState("");
-  const [dropdownAberto, setDropdownAberto] = useState(null);
   const [filtro, setFiltro] = useState("Todas");
   const [itemSelecionado, setItemSelecionado] = useState({
     empresa: null,
     servico: null,
   });
   const [visivel, setVisivel] = useState(false);
+  const [carregando, setCarregando] = useState(false);
+
+  /**VARIÁVEIS DERIVADAS */
+  const { empresa, servico } = itemSelecionado || {};
+  const { nome: nomeEmpresa, endereco } = empresa || {};
+  const { provinciaId, municipio, bairro, rua } = endereco || {};
+  const nomeServico = servico?.nome;
 
   /**EVENTOS */
-
   const handleEnviar = () => {
-    alert(
-      `Instituição: ${itemSelecionado.empresa.nome} \nServiço: ${
-        itemSelecionado.servico.nome
-      }\nProvíncia: ${pegarProvincia(
-        itemSelecionado.empresa.endereco.provinciaId
-      )}\nMunicípio: ${itemSelecionado.empresa.endereco.municipio}\nBairro: ${
-        itemSelecionado.empresa.endereco.bairro
-      }\nRua: ${itemSelecionado.empresa.endereco.rua}`
-    );
+    setCarregando(true); // ativa loader e muda cor do botão
+    setTimeout(() => {
+      alert(
+        `Instituição: ${nomeEmpresa} \nServiço: ${nomeServico}\nProvíncia: ${pegarProvincia(
+          provinciaId
+        )}\nMunicípio: ${municipio}\nBairro: ${bairro}\nRua: ${rua}`
+      );
+      setCarregando(false); // volta ao estado normal depois do alert
+    }, 2000);
   };
 
   return (
@@ -55,60 +56,68 @@ export default function NovaFilaPage() {
           </h1>
 
           {/**SECÇÃO DE INSTITUIÇÕES */}
-          <section className="itemsSection">
-            <h2 className="text-[20px] leading-[24px]">Instituição</h2>
+          <h2 className="text-[20px] leading-[24px]">Instituição</h2>
 
-            {!visivel && (
-              <>
-                <div className="relative">
-                  <Search
-                    size={16}
-                    className="text-[var(--cor-texto-secundario)] absolute top-[50%] left-[20px] -translate-y-[50%]"
-                  />
-                  {/** INPUT   */}
-                  <input
-                    type="text"
-                    value={pesquisa}
-                    onChange={(e) => setPesquisa(e.target.value)}
-                    placeholder="Pesquisar instituições..."
-                  />
-                </div>
-
-                {/** FILTRO */}
-                <FiltroProv
-                  dropdownAberto={dropdownAberto}
-                  setDropdownAberto={setDropdownAberto}
-                  filtro={filtro}
-                  setFiltro={setFiltro}
-                  setItemSelecionado={setItemSelecionado}
+          {!visivel && (
+            <>
+              <div className="relative">
+                <Search
+                  size={16}
+                  className="text-[var(--cor-texto-secundario)] absolute top-[50%] left-[20px] -translate-y-[50%]"
                 />
-              </>
-            )}
-            {/*CARD DE EMPRESAS */}
-            <CardEmpresas
-              visivel={visivel}
-              setVisivel={setVisivel}
-              itemSelecionado={itemSelecionado}
-              setItemSelecionado={setItemSelecionado}
-              pesquisa={pesquisa}
-              setPesquisa={setPesquisa}
-              filtro={filtro}
-            />
-          </section>
+                <input
+                  type="text"
+                  value={pesquisa}
+                  onChange={(e) => setPesquisa(e.target.value)}
+                  placeholder="Pesquisar instituições..."
+                />
+              </div>
 
-          {/*CARD DE SERVIÇOS */}
-          <CardSevico
-            dropdownAberto={dropdownAberto}
-            setDropdownAberto={setDropdownAberto}
+              {/** FILTRO */}
+              <FiltroProv
+                filtro={filtro}
+                setFiltro={setFiltro}
+                setItemSelecionado={setItemSelecionado}
+              />
+            </>
+          )}
+
+          {/*CARD DE EMPRESAS */}
+          <CardEmpresas
+            visivel={visivel}
+            setVisivel={setVisivel}
             itemSelecionado={itemSelecionado}
             setItemSelecionado={setItemSelecionado}
+            pesquisa={pesquisa}
+            setPesquisa={setPesquisa}
+            filtro={filtro}
           />
 
+          {/*CARD DE SERVIÇOS */}
+          {itemSelecionado.empresa && (
+            <>
+              <h2 className="text-[20px] leading-[24px]">Serviço</h2>
+              <CardSevico
+                itemSelecionado={itemSelecionado}
+                setItemSelecionado={setItemSelecionado}
+              />
+            </>
+          )}
+
           {itemSelecionado.empresa && itemSelecionado.servico && (
-            <Button onClick={handleEnviar} variante="confirmar">
-              <CheckCheck />
-              <span className="font-semibold">Confirmar</span>
-            </Button>
+            <div className="relative">
+              <Button
+                onClick={handleEnviar}
+                loading={carregando}
+                variante="confirmar"
+              >
+                <CheckCheck />
+                <span className="font-semibold">Confirmar</span>
+              </Button>
+              {carregando && (
+                <QueueLoader className="absolute top-[50%] left-[50%] translate-x-[-50%] -translate-y-[50%]" />
+              )}
+            </div>
           )}
         </section>
       </Main>
