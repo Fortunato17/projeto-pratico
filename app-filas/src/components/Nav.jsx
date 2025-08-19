@@ -1,16 +1,20 @@
-import { Menu } from "lucide-react";
+
+//HOOKS
+import Menu from "./Menu";
 
 export default function Nav() {
   return (
-    <nav className="flex items-center justify-between bg-[var(--cor-branco)] text-[var(--cor-primaria)] p-[10px_20px] rounded-[20px] overflow-hidden" >
-      <button className="flex flex-col items-centertext-[18px] font-extrabold corsor-pointer">
-        <span>App</span> Filas
-      </button>
-      <Menu
-        size={34}
-        className="cursor-pointer text-[var(--cor-texto-principal)]"
-      />
+    <nav className="relative flex flex-col gap-[10px] text-[var(--cor-texto-principal)] ">
+      <section className="flex items-center justify-between bg-[var(--cor-branco)] p-[10px_20px] rounded-[10px] overflow-hidden">
+        <a
+          href="#"
+          className="flex flex-col justify-center text-[var(--cor-primaria)] text-[18px] font-extrabold"
+        >
+          <span>App</span>Filas
+        </a>
+
+        <Menu/>
+      </section>
     </nav>
   );
 }
-

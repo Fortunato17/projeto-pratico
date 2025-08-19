@@ -6,7 +6,7 @@ export default function DropDown({
   variante,
   onClick,
   categoria,
-  children,
+  
 }) {
   const variantes = {
     filtraProv: "FiltraProv",
@@ -22,6 +22,7 @@ export default function DropDown({
       <span className="text-[14px] font-semibold">
         {titulo}
         {categoria && <span className="font-normal">{categoria}</span>}
+        
       </span>
       {dropdownAberto === variantes[variante] ? (
         <ChevronUp size={16} className="text-[var(--cor-texto-secundario)]" />

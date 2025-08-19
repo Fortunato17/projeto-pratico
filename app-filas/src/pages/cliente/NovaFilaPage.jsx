@@ -1,5 +1,5 @@
 // ÍCONES
-import { CheckCheck, Search, UsersRound } from "lucide-react";
+import { Check, CheckCheck, Search, UsersRound } from "lucide-react";
 // DADOS
 import { pegarProvincia } from "../../Dados";
 //HOOKS
@@ -12,9 +12,11 @@ import Button from "../../components/Button";
 import FiltroProv from "../../components/cliente/NovaFilaPage/FiltroProv";
 import CardEmpresas from "../../components/cliente/NovaFilaPage/CardEmpresas";
 import CardSevico from "../../components/cliente/NovaFilaPage/CardSevico";
-import FilaSpinner from "../../components/QueueLoader/QueueLoader";
-import SpinnerPontosVerdes from "../../components/QueueLoader/QueueLoader";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
+import toast from "react-hot-toast";
+import { notificarSucesso } from "../../ui-helpers/notificacoes";
+
+
 
 export default function NovaFilaPage() {
   /**HOOCKS */
@@ -37,11 +39,7 @@ export default function NovaFilaPage() {
   const handleEnviar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      alert(
-        `Instituição: ${nomeEmpresa} \nServiço: ${nomeServico}\nProvíncia: ${pegarProvincia(
-          provinciaId
-        )}\nMunicípio: ${municipio}\nBairro: ${bairro}\nRua: ${rua}`
-      );
+      notificarSucesso('FSAN3');
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);
   };

@@ -1,5 +1,5 @@
 // Ícones
-import { Banknote, Hospital, Plus, Search, Landmark } from "lucide-react";
+import * as Icons from "lucide-react";
 
 // Componentes
 import Header from "../../components/Header";
@@ -19,17 +19,17 @@ export default function HomePage() {
             <span className="font-bold italic">ESPERA</span>
           </h1>
           <p className=" text-center">
-            Com o <span className="font-bold ">AppFilas</span>, entra em
-            filas digitais, acompanha sua posição em tempo real e ganha tempo.
+            Com o <span className="font-bold ">AppFilas</span>, entre em
+            filas digitais, acompanhe sua posição em tempo real e ganhe tempo.
             Sem precisar estar no local.
           </p>
           <div className="flex flex-col items-center w-full gap-[10px] mt-[10px]">
             <Button variante="novaFila">
-              <Plus />
+              <Icons.Plus />
               Nova fila
             </Button>
             <Button variante="consultar">
-              <Search />
+              <Icons.Search />
               Consultar
             </Button>
           </div>
@@ -56,13 +56,13 @@ export default function HomePage() {
           <div className="flex flex-col gap-[20px] text-[var(--cor-branco)] text-[24px] ">
             <CardHome
               titulo="Hospitais/Clínicas"
-              Icon={Hospital}
+              Icon={Icons.Hospital}
               variante="primaria"
             />
-            <CardHome titulo="Bancos" Icon={Banknote} variante="primaria" />
+            <CardHome titulo="Bancos" Icon={Icons.Banknote} variante="primaria" />
             <CardHome
               titulo="Instituições Públicas"
-              Icon={Landmark}
+              Icon={Icons.Landmark}
               variante="primaria"
             />
             <CardHome variante="primaria">

@@ -3,37 +3,23 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 // DADOS
 import { provinciasDeAngola } from "../../../Dados";
 //HOOKS
-import { useEffect, useRef, useMemo } from "react";
+import { useMemo } from "react";
 import useDropdown from "../../../hooks/useDropdown";
-import DropDown from "../../DropDown";
+/*Serve para exibir lista de itens*/ import DropDown from "../../DropDown";
 
 export default function FiltroProv({ filtro, setFiltro, setItemSelecionado }) {
   //HOOKS
 
-  const { dropdownAberto, setDropdownAberto, toggleDropDown } = useDropdown();
+  const { dropdownAberto, setDropdownAberto, toggleDropDown, dropRef } =
+    useDropdown();
   //VARIÁVEIS
 
   const provinciasOrdenadas = useMemo(
     () => [...provinciasDeAngola].sort((a, b) => a.nome.localeCompare(b.nome)),
     [provinciasDeAngola]
   );
-  const dropRef = useRef(null);
-  useEffect(() => {
-    function handleClickFora(e) {
-      if (dropRef.current && !dropRef.current.contains(e.target)) {
-        setDropdownAberto(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickFora);
-    return () => {
-      document.removeEventListener("mousedown", handleClickFora);
-    };
-  }, [setDropdownAberto]);
 
   //EVENTOS
-  const handleAbrir = () => {
-    setDropdownAberto((prev) => (prev === "FiltraProv" ? null : "FiltraProv"));
-  };
 
   const handleSelecionar = (nome) => {
     setFiltro(nome);
@@ -66,7 +52,7 @@ export default function FiltroProv({ filtro, setFiltro, setItemSelecionado }) {
       />
 
       {dropdownAberto === "FiltraProv" && (
-        <div className="absolute top-[50px] w-full bg-[var(--cor-branco)] border-[0.5px] border-solid border-[var(--cor-borda)] shadow-[0px_10px_6px_0.5px_rgba(0,0,0,0.25)] rounded-[10px] p-[20px] z-50">
+        <div className="absolute top-[120%] w-full bg-[var(--cor-branco)] border-[0.5px] border-solid border-[var(--cor-borda)] shadow-[0px_10px_6px_0.5px_rgba(0,0,0,0.25)] rounded-[10px] p-[20px] z-50">
           <ul className="itemsSection pt-[5px] pr-[5px] max-h-[400px] overflow-auto will-change-transform">
             <li
               className="font-bold border-[0.5px] border-solid border-[var(--cor-borda)] rounded-[10px] p-[10px] cursor-pointer hover:bg-[var(--corHover)] hover:translate-y-[-2.5px]"
