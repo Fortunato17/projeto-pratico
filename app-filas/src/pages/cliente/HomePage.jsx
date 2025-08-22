@@ -8,8 +8,10 @@ import Main from "../../components/Main";
 import Button from "../../components/Button";
 import Carrossel from "../../components/cliente/Carrossel";
 import CardHome from "../../components/cliente/CardHome";
-
+// Hooks
+import { useNavigateGlobal } from "../../contexts/NavigateProvider";
 export default function HomePage() {
+  const navigate = useNavigateGlobal();
   return (
     <div>
       <Header>
@@ -24,11 +26,11 @@ export default function HomePage() {
             Sem precisar estar no local.
           </p>
           <div className="flex flex-col items-center w-full gap-[10px] mt-[10px]">
-            <Button variante="novaFila">
+            <Button variante="novaFilaHead" onClick={()=> navigate("/nova-fila")}>
               <Icons.Plus />
               Nova fila
             </Button>
-            <Button variante="consultar">
+            <Button variante="consultar" onClick={()=> navigate("/consultar")}>
               <Icons.Search />
               Consultar
             </Button>
@@ -36,8 +38,8 @@ export default function HomePage() {
         </div>
       </Header>
       <Main>
-        <section className="itemsSection">
-          <h2 className="titulo ">
+        <section className="itemsSection ">
+          <h2 className="titulo">
             Somos a sua melhor{" "}
             <span className="font-bold italic">ESCOLHA</span>
           </h2>

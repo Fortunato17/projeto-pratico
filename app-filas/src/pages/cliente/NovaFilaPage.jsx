@@ -1,9 +1,8 @@
 // ÍCONES
-import { Check, CheckCheck, Search, UsersRound } from "lucide-react";
-// DADOS
-import { pegarProvincia } from "../../Dados";
+import { CheckCheck, Search } from "lucide-react";
 //HOOKS
 import { useState } from "react";
+import { useNavigateGlobal } from "../../contexts/NavigateProvider";
 //COMPONENTES
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -13,10 +12,10 @@ import FiltroProv from "../../components/cliente/NovaFilaPage/FiltroProv";
 import CardEmpresas from "../../components/cliente/NovaFilaPage/CardEmpresas";
 import CardSevico from "../../components/cliente/NovaFilaPage/CardSevico";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
-import toast from "react-hot-toast";
-import { notificarSucesso } from "../../ui-helpers/notificacoes";
-
-
+//Ui-Heplpers
+import { NotificarSucesso } from "../../ui-helpers/Notificacoes";
+//Utils
+import { gerarCodigo } from "../../utils/GerarCodigo";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
@@ -28,18 +27,13 @@ export default function NovaFilaPage() {
   });
   const [visivel, setVisivel] = useState(false);
   const [carregando, setCarregando] = useState(false);
-
-  /**VARIÁVEIS DERIVADAS */
-  const { empresa, servico } = itemSelecionado || {};
-  const { nome: nomeEmpresa, endereco } = empresa || {};
-  const { provinciaId, municipio, bairro, rua } = endereco || {};
-  const nomeServico = servico?.nome;
-
+  const navigate = useNavigateGlobal();
   /**EVENTOS */
   const handleEnviar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      notificarSucesso('FSAN3');
+      NotificarSucesso(gerarCodigo());
+      navigate("/filas");
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);
   };
@@ -48,58 +42,51 @@ export default function NovaFilaPage() {
     <div>
       <Header />
       <Main>
-        <section className="itemsSection">
-          <h1 className="text-[24px] leading-[30px] font-extrabold">
-            Nova fila
-          </h1>
-
+        <section className="itemsSectionBig">
           {/**SECÇÃO DE INSTITUIÇÕES */}
-          <h2 className="text-[20px] leading-[24px]">Instituição</h2>
-
-          {!visivel && (
-            <>
-              <div className="relative">
-                <Search
-                  size={16}
-                  className="text-[var(--cor-texto-secundario)] absolute top-[50%] left-[20px] -translate-y-[50%]"
+          <section className="itemsSection">
+            <h1 className="tituloBold">Nova fila</h1>
+            <h2 className="subTitulo">Instituição</h2>
+            {!visivel && (
+              <>
+                <div className="relative">
+                  <Search
+                    size={16}
+                    className="text-[var(--cor-texto-secundario)] absolute top-[50%] left-[20px] -translate-y-[50%]"
+                  />
+                  <input
+                    type="text"
+                    value={pesquisa}
+                    onChange={(e) => setPesquisa(e.target.value)}
+                    placeholder="Pesquisar instituições..."
+                  />
+                </div>
+                {/** FILTRO */}
+                <FiltroProv
+                  filtro={filtro}
+                  setFiltro={setFiltro}
+                  setItemSelecionado={setItemSelecionado}
                 />
-                <input
-                  type="text"
-                  value={pesquisa}
-                  onChange={(e) => setPesquisa(e.target.value)}
-                  placeholder="Pesquisar instituições..."
-                />
-              </div>
-
-              {/** FILTRO */}
-              <FiltroProv
-                filtro={filtro}
-                setFiltro={setFiltro}
-                setItemSelecionado={setItemSelecionado}
-              />
-            </>
-          )}
-
-          {/*CARD DE EMPRESAS */}
-          <CardEmpresas
-            visivel={visivel}
-            setVisivel={setVisivel}
-            itemSelecionado={itemSelecionado}
-            setItemSelecionado={setItemSelecionado}
-            pesquisa={pesquisa}
-            setPesquisa={setPesquisa}
-            filtro={filtro}
-          />
+              </>
+            )}
+            {/*CARD DE EMPRESAS */}
+            <CardEmpresas
+              visivel={visivel}
+              setVisivel={setVisivel}
+              itemSelecionado={itemSelecionado}
+              setItemSelecionado={setItemSelecionado}
+              pesquisa={pesquisa}
+              setPesquisa={setPesquisa}
+              filtro={filtro}
+            />
+          </section>
 
           {/*CARD DE SERVIÇOS */}
           {itemSelecionado.empresa && (
-            <>
-              <h2 className="text-[20px] leading-[24px]">Serviço</h2>
-              <CardSevico
-                itemSelecionado={itemSelecionado}
-                setItemSelecionado={setItemSelecionado}
-              />
-            </>
+            <CardSevico
+              itemSelecionado={itemSelecionado}
+              setItemSelecionado={setItemSelecionado}
+            />
           )}
 
           {itemSelecionado.empresa && itemSelecionado.servico && (

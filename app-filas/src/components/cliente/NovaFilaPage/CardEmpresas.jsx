@@ -16,12 +16,11 @@ export default function CardEmpresas({
     return empresas
       .filter((empresa) => {
         const incluiProvin =
-          filtro === "Todas" ||
-          pegarProvincia(empresa.endereco.provinciaId).includes(filtro);
-        const incluiNome = empresa.nome
-          .toLowerCase()
-          .includes(termoDaPesquisa);
-        const nomeVisivel = visivel ? itemSelecionado.empresa?.id === empresa.id : true;
+          filtro === "Todas" || pegarProvincia(provinciaId).includes(filtro);
+        const incluiNome = empresa.nome.toLowerCase().includes(termoDaPesquisa);
+        const nomeVisivel = visivel
+          ? itemSelecionado.empresa?.id === empresa.id
+          : true;
         return incluiNome && incluiProvin && nomeVisivel;
       })
       .sort((a, b) => a.nome.localeCompare(b.nome));
@@ -57,7 +56,7 @@ export default function CardEmpresas({
       )
     );
   };
-  
+
   return (
     <div className="caixa-lista">
       <ul className="lista-scroll">
@@ -67,6 +66,10 @@ export default function CardEmpresas({
           </li>
         ) : (
           resultado.map((empresa) => {
+            /**VARIÁVEIS DERIVADAS */
+            const nomeEmpresa = empresa.nome;
+            const { provinciaId, municipio, bairro, rua } = empresa.endereco;
+            const provincia = pegarProvincia(provinciaId);
             const selecionado = itemSelecionado.empresa?.id === empresa.id;
             return (
               <li
@@ -77,13 +80,11 @@ export default function CardEmpresas({
                 onClick={() => handleSelecionarEmpresa(empresa)}
               >
                 <div className="font-bold">
-                  {destaqueNaPesquisa(pesquisa, empresa.nome)}
+                  {destaqueNaPesquisa(pesquisa, nomeEmpresa)}
                 </div>
                 <div className="flex items-center text-[14px] text-[var(--cor-texto-secundario)]">
                   <MapPin size={16} strokeWidth={1.5} />
-                  {pegarProvincia(empresa.endereco.provinciaId)},{" "}
-                  {empresa.endereco.municipio}, {empresa.endereco.bairro},{" "}
-                  {empresa.endereco.rua}
+                  {provincia}, {municipio}, {bairro}, {rua}
                 </div>
               </li>
             );

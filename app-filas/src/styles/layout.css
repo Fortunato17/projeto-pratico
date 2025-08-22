@@ -8,12 +8,26 @@
   line-height: 30px;
   
 }
+.tituloBold{
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: bold;
+}
 .subTitulo {
   font-size: 20px;
   line-height: 24px;
   
 }
+.destaque{
+  font-weight: bold;
+  color: var(--cor-verde-escuro);
+}
 /*Tem no HOME*/
+.itemsSectionBig {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .itemsSection {
   display: flex;
   flex-direction: column;

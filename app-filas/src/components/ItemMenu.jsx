@@ -1,8 +1,8 @@
-export default function ItemMenu({ titulo, Icon }) {
+export default function ItemMenu({ titulo, Icon , onClick}) {
   return (
     <ul>
       <li>
-        <a href="#" className="itemMenu">
+        <a onClick={onClick} className="itemMenu cursor-pointer">
           {Icon && <Icon size={24} strokeWidth={1.5}/>}
           {titulo}
         </a>

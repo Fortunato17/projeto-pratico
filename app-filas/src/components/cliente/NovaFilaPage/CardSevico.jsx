@@ -35,6 +35,7 @@ export default function CardSevico({ setItemSelecionado, itemSelecionado }) {
 
   return (
     <div className="itemsSection">
+      <h2 className="subTitulo">Serviço</h2>
       <DropDown
         dropdownAberto={dropdownAberto}
         titulo="Selecione um serviço"
@@ -60,7 +61,7 @@ export default function CardSevico({ setItemSelecionado, itemSelecionado }) {
                     <p className="flex items-center gap-[5px]">
                       <UsersRound size={16} /> Pessoas na fila
                     </p>
-                    <span className="text-[var(--cor-primaria)] font-bold">
+                    <span className="destaque">
                       {servico.pessoasNaFila}
                     </span>
                   </div>
