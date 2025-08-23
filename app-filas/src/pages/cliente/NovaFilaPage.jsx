@@ -13,6 +13,7 @@ import CardEmpresas from "../../components/cliente/NovaFilaPage/CardEmpresas";
 import CardSevico from "../../components/cliente/NovaFilaPage/CardSevico";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
 //Ui-Heplpers
+
 import { NotificarSucesso } from "../../ui-helpers/Notificacoes";
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
