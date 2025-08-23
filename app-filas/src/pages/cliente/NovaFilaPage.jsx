@@ -14,7 +14,7 @@ import CardSevico from "../../components/cliente/NovaFilaPage/CardSevico";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
 //Ui-Heplpers
 
-import { NotificarSucesso } from "../../ui-helpers/Notificacoes";
+
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
 
@@ -33,7 +33,7 @@ export default function NovaFilaPage() {
   const handleEnviar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      NotificarSucesso(gerarCodigo());
+      
       navigate("/filas");
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);
