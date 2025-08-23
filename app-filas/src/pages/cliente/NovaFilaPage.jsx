@@ -17,7 +17,7 @@ import QueueLoader from "../../components/QueueLoader/QueueLoader";
 
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
-import { NotificarSucesso } from "../../uiHelpers/notificacoes";
+import { NotificarSucesso } from "../../uiHelpers/Notificacoes.jxs";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
