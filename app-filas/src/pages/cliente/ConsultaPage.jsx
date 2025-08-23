@@ -8,11 +8,11 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
 //Ui-Heplpers
-
 import { NotificarSucesso } from "../../ui-helpers/Notificacoes";
+
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
-// Hooks
+// Hooks gerarCodigo()
 import { useState } from "react";
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
 
