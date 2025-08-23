@@ -17,6 +17,7 @@ import QueueLoader from "../../components/QueueLoader/QueueLoader";
 
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
+import { NotificarSucesso } from "../../uiHelpers/notificacoes";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
@@ -33,7 +34,7 @@ export default function NovaFilaPage() {
   const handleEnviar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      
+      NotificarSucesso(gerarCodigo());
       navigate("/filas");
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);
