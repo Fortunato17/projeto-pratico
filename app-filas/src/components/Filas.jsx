@@ -5,7 +5,7 @@ import { empresas, pegarProvincia, empresaComFila } from "../Dados";
 //Componentes
 import Button from "./Button";
 import { useEffect, useState } from "react";
-import { NotificarExcluirFila } from "../ui-helpers/Notificacoes";
+
 
 export default function Filas() {
   const [posicoes, setPosicoes] = useState([]);
@@ -51,18 +51,7 @@ export default function Filas() {
               </section>
               <Button
                 variante="excluir"
-                onClick={
-                  /*Elimnar isso:*/ () =>
-                    NotificarExcluirFila(
-                      nomeEmpresa,
-                      nomeServico,
-                      pessoasNaFila,
-                      provincia,
-                      municipio,
-                      bairro,
-                      rua
-                    )
-                }
+                
               >
                 <Icons.X />
                 Sair desta fila
