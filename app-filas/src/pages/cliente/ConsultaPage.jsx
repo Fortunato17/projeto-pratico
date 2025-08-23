@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
 //Ui-Heplpers
-
+import { NotificarSucesso } from "../../uiHelpers/Notificar";
 
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
@@ -23,7 +23,7 @@ export default function ConsultarPage() {
   const handleConsultar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      
+      NotificarSucesso(gerarCodigo());
       navigate("/filas");
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);

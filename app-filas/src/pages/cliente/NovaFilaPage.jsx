@@ -14,11 +14,10 @@ import CardSevico from "../../components/cliente/NovaFilaPage/CardSevico";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
 //Ui-Heplpers
 
+import { NotificarSucesso } from "../../uiHelpers/Notificar";
 
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
-import { NotificarSucesso } from "../../uiHelpers/Notificar";
-
 
 export default function NovaFilaPage() {
   /**HOOCKS */
