@@ -1,13 +1,11 @@
-
 // ÍCONES
 import * as Icons from "lucide-react";
 import ItemMenu from "./ItemMenu";
 import useDropdown from "../hooks/useDropdown";
-import { useNavigateGlobal } from "../contexts/NavigateProvider";
 export default function Menu({ className }) {
   //HOOKS
   const { dropdownAberto, toggleDropDown, dropRef } = useDropdown();
-  const navigate = useNavigateGlobal();
+
   return (
     <div ref={dropRef}>
       <button
@@ -23,25 +21,21 @@ export default function Menu({ className }) {
       {/*O absolute abaixo faz referência ao relative do do elemento Nav */}
       {dropdownAberto === "Menu" && (
         <div className={`caixaMenu absolute w-full top-[112%] left-0 z-10`}>
-          <ItemMenu
-            titulo={"Home"}
-            Icon={Icons.Home}
-            onClick={() => navigate("/")}
-          />
+          <ItemMenu titulo={"Home"} Icon={Icons.Home} irPara="/" />
           <ItemMenu
             titulo={"Fale Connosco"}
             Icon={Icons.MessageSquareText}
-            onClick={() => navigate("/fale-connosco")}
+            irPara="/fale-connosco"
           />
           <ItemMenu
             titulo={"Nova fila"}
             Icon={Icons.Plus}
-            onClick={() => navigate("/nova-fila")}
+            irPara="/nova-fila"
           />
           <ItemMenu
             titulo={"Consultar"}
             Icon={Icons.Search}
-            onClick={() => navigate("/consultar")}
+            irPara="/consultar"
           />
         </div>
       )}
