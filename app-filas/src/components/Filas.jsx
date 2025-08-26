@@ -12,7 +12,7 @@ export default function Filas({ ticket }) {
   const { gruposDeFilas } = useFilas();
   //VARIÁVEIS
   const minhasFilas =
-    gruposDeFilas.find((grupo) => grupo?.id === 'F8B617')?.filas || [];
+    gruposDeFilas.find((grupo) => grupo?.id === ticket)?.filas || [];
 
   //EVENTOS
   function reduzirpessoa(valor) {
