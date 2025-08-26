@@ -5,23 +5,33 @@ import { empresas, pegarProvincia, empresaComFila } from "../Dados";
 //Componentes
 import Button from "./Button";
 import { useEffect, useState } from "react";
+import { useFilas } from "../contexts/FilasProvider";
 
-
-export default function Filas() {
+export default function Filas({ ticket }) {
   const [posicoes, setPosicoes] = useState([]);
+  const { gruposDeFilas } = useFilas();
+  //VARIÁVEIS
+  const minhasFilas =
+    gruposDeFilas.find((grupo) => grupo?.id === 'F8B617')?.filas || [];
 
   //EVENTOS
-  function hanleExcluirFila() {}
+  function reduzirpessoa(valor) {
+    return valor - 1;
+  }
 
   return (
     <ul className="itemsSection">
-      {empresas.slice(0, 3).map((empresa) => {
+      {minhasFilas.map((fila) => {
         /**VARIÁVEIS DERIVADAS */
-        const nomeEmpresa = empresa.nome;
-        const { provinciaId, municipio, bairro, rua } = empresa.endereco;
-        const provincia = pegarProvincia(provinciaId);
-        const nomeServico = empresa.servicos[0];
-        const pessoasNaFila = empresaComFila(empresa.id)[1].pessoasNaFila;
+        const { empresa, servico } = fila;
+        const {
+          provincia,
+          municipio,
+          bairro,
+          rua,
+          nome: nomeEmpresa,
+        } = empresa;
+        const { nome: nomeServico, tipo: tipoServico, pessoasNaFila } = servico;
         return (
           <li key={empresa.id} className="relative overflow-hidden caixa-lista">
             <div className="absolute top-0 left-0 w-full bg-[var(--cor-amarelo)] h-[20px]"></div>
@@ -40,19 +50,19 @@ export default function Filas() {
               <section className="flex justify-between">
                 <div>
                   <h2>Código da fila:</h2>
-                  <p className="text-[24px] destaque">B38</p>
+                  <p className="text-[24px] destaque">
+                    {tipoServico}
+                    {pessoasNaFila}
+                  </p>
                 </div>
                 <div>
                   <h2>Sua posição:</h2>
                   <p className="flex  justify-end  text-[24px] destaque">
-                    {pessoasNaFila}
+                    {reduzirpessoa(pessoasNaFila)}
                   </p>
                 </div>
               </section>
-              <Button
-                variante="excluir"
-                
-              >
+              <Button variante="excluir">
                 <Icons.X />
                 Sair desta fila
               </Button>

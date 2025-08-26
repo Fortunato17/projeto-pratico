@@ -1,7 +1,7 @@
 // ÍCONES
 import { ChevronDown, ChevronUp } from "lucide-react";
 // DADOS
-import { provinciasDeAngola } from "../../../Dados";
+import { provincias } from "../../../Dados";
 //HOOKS
 import { useMemo } from "react";
 import useDropdown from "../../../hooks/useDropdown";
@@ -15,8 +15,8 @@ export default function FiltroProv({ filtro, setFiltro, setItemSelecionado }) {
   //VARIÁVEIS
 
   const provinciasOrdenadas = useMemo(
-    () => [...provinciasDeAngola].sort((a, b) => a.nome.localeCompare(b.nome)),
-    [provinciasDeAngola]
+    () => [...provincias].sort((a, b) => a.nome.localeCompare(b.nome)),
+    [provincias]
   );
 
   //EVENTOS

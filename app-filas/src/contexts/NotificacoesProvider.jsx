@@ -1,7 +1,7 @@
-import { Toaster} from "react-hot-toast";
-export default function NotificacoesProvider () {
-
+import { Toaster } from "react-hot-toast";
+export default function NotificacoesProvider({ children }) {
   return (
+    <>
     <Toaster
       toastOptions={{
         style: {
@@ -9,5 +9,7 @@ export default function NotificacoesProvider () {
         },
       }}
     />
+      {children}
+    </>
   );
 }

@@ -8,9 +8,11 @@ import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Filas from "../../components/Filas";
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
+import { useFilas } from "../../contexts/FilasProvider";
 
 export default function FilasPage() {
   const navigate = useNavigateGlobal();
+  const {ticketAtivo} = useFilas()
   return (
     <div>
       <Header />
@@ -19,12 +21,12 @@ export default function FilasPage() {
           <section>
             <h1 className="tituloBold">Minhas filas</h1>
             <p>
-              Ticket: <span className="destaque">FSAN3</span>
+              Ticket: <span className="destaque">{ticketAtivo}</span>
             </p>
           </section>
         {/*FILAS */}
-        <Filas/>
-          <Button variante="confirmar" onClick={() => navigate("/nova-fila")}>
+        <Filas ticket={ticketAtivo}/>
+          <Button variante="confirmar" onClick={() => navigate("/nova-fila",{state:{fromFilasPage: true}})} >
             {" "}
             <Icons.Plus /> Adicionar fila
           </Button>

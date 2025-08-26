@@ -16,7 +16,8 @@ export default function CardEmpresas({
     return empresas
       .filter((empresa) => {
         const incluiProvin =
-          filtro === "Todas" || pegarProvincia(provinciaId).includes(filtro);
+          filtro === "Todas" ||
+          pegarProvincia(empresa.provinciaId).includes(filtro);
         const incluiNome = empresa.nome.toLowerCase().includes(termoDaPesquisa);
         const nomeVisivel = visivel
           ? itemSelecionado.empresa?.id === empresa.id
@@ -40,6 +41,7 @@ export default function CardEmpresas({
       setVisivel(false);
     }
   };
+
   // OUTRAS FUNÇÕES
   const destaqueNaPesquisa = (busca, titulo) => {
     if (!busca) {
@@ -68,7 +70,7 @@ export default function CardEmpresas({
           resultado.map((empresa) => {
             /**VARIÁVEIS DERIVADAS */
             const nomeEmpresa = empresa.nome;
-            const { provinciaId, municipio, bairro, rua } = empresa.endereco;
+            const { provinciaId, municipio, bairro, rua } = empresa;
             const provincia = pegarProvincia(provinciaId);
             const selecionado = itemSelecionado.empresa?.id === empresa.id;
             return (

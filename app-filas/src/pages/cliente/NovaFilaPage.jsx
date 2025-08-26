@@ -18,6 +18,8 @@ import { NotificarSucesso } from "../../uiHelpers/Notificar";
 
 //Utils
 import { gerarCodigo } from "../../utils/GerarCodigo";
+import { useFilas } from "../../contexts/FilasProvider";
+import { useLocation } from "react-router-dom";
 
 export default function NovaFilaPage() {
   /**HOOCKS */
@@ -30,11 +32,17 @@ export default function NovaFilaPage() {
   const [visivel, setVisivel] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const navigate = useNavigateGlobal();
+  const location = useLocation();
+  console.log();
+  const { addFilas, criarGrupoFilas } = useFilas();
   /**EVENTOS */
-  const handleEnviar = () => {
+  const handleConfirmar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      NotificarSucesso(gerarCodigo());
+      NotificarSucesso("FLJT17");
+      location.state?.fromFilasPage
+        ? addFilas(itemSelecionado)
+        : criarGrupoFilas(itemSelecionado);
       navigate("/filas");
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);
@@ -94,7 +102,7 @@ export default function NovaFilaPage() {
           {itemSelecionado.empresa && itemSelecionado.servico && (
             <div className="relative">
               <Button
-                onClick={handleEnviar}
+                onClick={handleConfirmar}
                 loading={carregando}
                 variante="confirmar"
               >
