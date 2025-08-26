@@ -1,11 +1,18 @@
-import { createContext, useContext, useState } from "react";
+//Contexts
+import { createContext, useContext, useEffect, useState } from "react";
+//Utils
 import { gerarCodigo } from "../utils/GerarCodigo";
 
 const FilasContext = createContext();
 export function FilasProvider({ children }) {
-  const [gruposDeFilas, setGruposDeFilas] = useState([]);
+  const [gruposDeFilas, setGruposDeFilas] = useState(
+    JSON.parse(localStorage.getItem("GrupoDeFilas")) || []
+  );
   const [ticketAtivo, setTicketAtivo] = useState(null);
-
+  useEffect(
+    () => localStorage.setItem("GrupoDeFilas", JSON.stringify(gruposDeFilas)),
+    [gruposDeFilas]
+  );
   function criarGrupoFilas(novaFilaProp) {
     const ticket = gerarCodigo();
     const novoGrupoDeFila = { id: ticket, filas: [novaFilaProp] };

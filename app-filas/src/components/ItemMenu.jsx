@@ -1,4 +1,6 @@
+//Hooks
 import { useLocation } from "react-router-dom";
+//Contextos
 import { useNavigateGlobal } from "../contexts/NavigateProvider";
 
 export default function ItemMenu({ titulo, Icon , onClick, irPara}) {

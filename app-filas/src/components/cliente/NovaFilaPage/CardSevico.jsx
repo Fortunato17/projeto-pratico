@@ -1,20 +1,20 @@
-//ÍCONES
-import { ChevronDown, ChevronUp, UsersRound } from "lucide-react";
-//DADOS
+//Ícones
+import {UsersRound } from "lucide-react";
+//Dados
 import { empresaComFila } from "../../../Dados";
-//HOOKS
+//Hooks
 import { useEffect, useMemo } from "react";
 import useDropdown from "../../../hooks/useDropdown";
 import DropDown from "../../DropDown";
 export default function CardSevico({ setItemSelecionado, itemSelecionado }) {
-  //HOOKS
+  //Hooks
 
   //Esse hook foi personalizado e serve para fechar o dropdown quando a empresa mudar
   const { dropdownAberto, setDropdownAberto, toggleDropDown } = useDropdown();
   useEffect(() => {
     setDropdownAberto(null);
   }, [itemSelecionado.empresa?.id]);
-  //VARIÁVEIS
+  //Variáveis
 
   const servicosOrdenados = useMemo(
     () =>
@@ -24,7 +24,7 @@ export default function CardSevico({ setItemSelecionado, itemSelecionado }) {
     [itemSelecionado.empresa?.id]
   );
 
-  //EVENTOS
+  //Eventos
 
   const handleSelecionarServico = (servicoParam) => {
     setItemSelecionado((prev) => ({

@@ -1,10 +1,9 @@
 // Ícones
 import * as Icons from "lucide-react";
-//Dados
-import { empresas, pegarProvincia, empresaComFila } from "../Dados";
 //Componentes
 import Button from "./Button";
 import { useEffect, useState } from "react";
+//Dados fictícios vindo de um provider
 import { useFilas } from "../contexts/FilasProvider";
 
 export default function Filas({ ticket }) {

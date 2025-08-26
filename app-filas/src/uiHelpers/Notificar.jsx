@@ -15,3 +15,13 @@ export function NotificarSucesso(codigo = null) {
     </div>
   );
 }
+export function NotificarErro() {
+  toast(
+    <div className="flex flex-col gap-[10px]">
+      <Icons.X size={60} className="text-[var(--cor-erro)] m-auto" />
+      <h1 className="text-[var(--cor-erro)] m-auto text-[20px] font-bold">
+        Ticket errado ou pode ter expirado!!
+      </h1>
+    </div>
+  );
+}

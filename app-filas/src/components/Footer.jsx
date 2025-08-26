@@ -1,3 +1,4 @@
+//Ícones
 import { Globe, Mail, PhoneCall } from "lucide-react";
 
 export default function Footer() {

@@ -1,5 +1,8 @@
+//Hooks
 import { useMemo } from "react";
+//Dados
 import { empresas, pegarProvincia } from "../../../Dados";
+//Ícones
 import { MapPin } from "lucide-react";
 export default function CardEmpresas({
   visivel,
@@ -27,7 +30,7 @@ export default function CardEmpresas({
       .sort((a, b) => a.nome.localeCompare(b.nome));
   }, [pesquisa, filtro, visivel, itemSelecionado.empresa?.id]);
 
-  /**EVENTOS */
+  //Eventos
   const handleSelecionarEmpresa = (empresaParam) => {
     if (itemSelecionado.empresa?.id !== empresaParam.id) {
       setItemSelecionado({
@@ -42,7 +45,7 @@ export default function CardEmpresas({
     }
   };
 
-  // OUTRAS FUNÇÕES
+  // Outras funções
   const destaqueNaPesquisa = (busca, titulo) => {
     if (!busca) {
       return titulo;
@@ -68,7 +71,7 @@ export default function CardEmpresas({
           </li>
         ) : (
           resultado.map((empresa) => {
-            /**VARIÁVEIS DERIVADAS */
+            //Variáveis derivadas
             const nomeEmpresa = empresa.nome;
             const { provinciaId, municipio, bairro, rua } = empresa;
             const provincia = pegarProvincia(provinciaId);

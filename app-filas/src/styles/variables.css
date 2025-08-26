@@ -1,4 +1,4 @@
-/* CORES, FONTES, ESPACAMENTOS*/
+/* CORES*/
 
 :root {
   /*CORES:*/
@@ -15,6 +15,7 @@
   --cor-erro: #ef4444;
   --cor-verdeClaro: #7aecb2; /*Bordas com hover*/
   --cor-amarelo: #ffe101; /*Fila demorada*/
+  --cor-Aviso: #f1ba23; /*Posição próxima*/
   --cor-verdeAmarelo: #adff2f; /*Posição próxima*/
   --cor-branco: #ffffff;
   --cor-hoverBtn1: #26da9e;
@@ -24,11 +25,5 @@
   --bp-tablet: 768px;
   --bp-desktop: 1024px;
 
-  /*TAMANHOS*/
-  --espaco-pequeno: 5px;
-  --espaco-medio: 10px;
-  --espaco-grande: 20px;
 
-  --radius: 8px;
-  --transicao: all 0.3s ease;
 }

@@ -1,9 +1,9 @@
-// ÍCONES
+// Ícones
 import * as Icons from "lucide-react";
 import ItemMenu from "./ItemMenu";
 import useDropdown from "../hooks/useDropdown";
 export default function Menu({ className }) {
-  //HOOKS
+  //Hooks
   const { dropdownAberto, toggleDropDown, dropRef } = useDropdown();
 
   return (

@@ -1,9 +1,9 @@
-// ÍCONES
+// Ícones
 import { CheckCheck, Search } from "lucide-react";
-//HOOKS
+//Hoocks
 import { useState } from "react";
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
-//COMPONENTES
+//Components
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Main from "../../components/Main";
@@ -16,13 +16,12 @@ import QueueLoader from "../../components/QueueLoader/QueueLoader";
 
 import { NotificarSucesso } from "../../uiHelpers/Notificar";
 
-//Utils
-import { gerarCodigo } from "../../utils/GerarCodigo";
+//Contexts
 import { useFilas } from "../../contexts/FilasProvider";
 import { useLocation } from "react-router-dom";
 
 export default function NovaFilaPage() {
-  /**HOOCKS */
+  /**Hooks */
   const [pesquisa, setPesquisa] = useState("");
   const [filtro, setFiltro] = useState("Todas");
   const [itemSelecionado, setItemSelecionado] = useState({
@@ -34,16 +33,21 @@ export default function NovaFilaPage() {
   const navigate = useNavigateGlobal();
   const location = useLocation();
   console.log();
-  const { addFilas, criarGrupoFilas } = useFilas();
-  /**EVENTOS */
+  const { addFilas, criarGrupoFilas, ticketAtivo } = useFilas();
+  /**Eventos */
   const handleConfirmar = () => {
     setCarregando(true); // ativa loader e muda cor do botão
     setTimeout(() => {
-      NotificarSucesso("FLJT17");
+      NotificarSucesso();
+
       location.state?.fromFilasPage
         ? addFilas(itemSelecionado)
         : criarGrupoFilas(itemSelecionado);
-      navigate("/filas");
+
+      //Usamos query strings para enviar o ticket na URL
+      const query = new URLSearchParams();
+      query.set('ticket',ticketAtivo)
+      navigate(`/filas?${query.toString()}`);
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);
   };
@@ -53,7 +57,7 @@ export default function NovaFilaPage() {
       <Header />
       <Main>
         <section className="itemsSectionBig">
-          {/**SECÇÃO DE INSTITUIÇÕES */}
+          {/**Seção de instituição*/}
           <section className="itemsSection">
             <h1 className="tituloBold">Nova fila</h1>
             <h2 className="subTitulo">Instituição</h2>
@@ -71,7 +75,7 @@ export default function NovaFilaPage() {
                     placeholder="Pesquisar instituições..."
                   />
                 </div>
-                {/** FILTRO */}
+                {/** Filtro */}
                 <FiltroProv
                   filtro={filtro}
                   setFiltro={setFiltro}
@@ -79,7 +83,7 @@ export default function NovaFilaPage() {
                 />
               </>
             )}
-            {/*CARD DE EMPRESAS */}
+            {/*Card de empresas */}
             <CardEmpresas
               visivel={visivel}
               setVisivel={setVisivel}
@@ -91,7 +95,7 @@ export default function NovaFilaPage() {
             />
           </section>
 
-          {/*CARD DE SERVIÇOS */}
+          {/*Card de serviços */}
           {itemSelecionado.empresa && (
             <CardSevico
               itemSelecionado={itemSelecionado}

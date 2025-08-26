@@ -1,8 +1,7 @@
-
-//HOOKS
+//Contexts
 import { useNavigateGlobal } from "../contexts/NavigateProvider";
 
-
+//Components
 import Menu from "./Menu";
 
 export default function Nav() {
@@ -17,7 +16,7 @@ export default function Nav() {
           <span>App</span>Filas
         </a>
 
-        <Menu/>
+        <Menu />
       </section>
     </nav>
   );

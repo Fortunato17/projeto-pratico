@@ -1,5 +1,5 @@
 
-import { Children } from "react";
+//Componentes
 import Nav from "./Nav";
 
 export default function Header({ children, ...props }) {

@@ -1,25 +1,25 @@
-// ÍCONES
-import { ChevronDown, ChevronUp } from "lucide-react";
-// DADOS
+
+// Dados
 import { provincias } from "../../../Dados";
-//HOOKS
+//Hooks
 import { useMemo } from "react";
 import useDropdown from "../../../hooks/useDropdown";
 /*Serve para exibir lista de itens*/ import DropDown from "../../DropDown";
 
 export default function FiltroProv({ filtro, setFiltro, setItemSelecionado }) {
-  //HOOKS
+  //Hooks
 
   const { dropdownAberto, setDropdownAberto, toggleDropDown, dropRef } =
     useDropdown();
-  //VARIÁVEIS
+  //Variáveis
+  //Ordena as províncias em ordem alfabética
 
   const provinciasOrdenadas = useMemo(
     () => [...provincias].sort((a, b) => a.nome.localeCompare(b.nome)),
     [provincias]
   );
 
-  //EVENTOS
+  //Eventos
 
   const handleSelecionar = (nome) => {
     setFiltro(nome);
@@ -27,7 +27,7 @@ export default function FiltroProv({ filtro, setFiltro, setItemSelecionado }) {
     setDropdownAberto(null);
   };
 
-  //FUNÇÕES
+  //Função para navegação via teclado
   const moveTeclas = (nome) => ({
     role: "button",
     tabIndex: 0,

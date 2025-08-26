@@ -7,27 +7,49 @@ import Main from "../../components/Main";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import QueueLoader from "../../components/QueueLoader/QueueLoader";
-//Ui-Heplpers
-import { NotificarSucesso } from "../../uiHelpers/Notificar";
 
-//Utils
-import { gerarCodigo } from "../../utils/GerarCodigo";
-// Hooks gerarCodigo()
-import { useState } from "react";
+// Hooks
+import { use, useState } from "react";
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
+import { useFilas } from "../../contexts/FilasProvider";
+import { NotificarErro } from "../../uiHelpers/Notificar";
 
 export default function ConsultarPage() {
   const [carregando, setCarregando] = useState(false);
+  const [consulta, setConsulta] = useState();
+  const [inputVazio, setInputVazio] = useState(false);
+  const { gruposDeFilas, setTicketAtivo } = useFilas();
   const navigate = useNavigateGlobal();
-  /**EVENTOS */
-  const handleConsultar = () => {
-    setCarregando(true); // ativa loader e muda cor do botão
-    setTimeout(() => {
-      NotificarSucesso(gerarCodigo());
-      navigate("/filas");
-      setCarregando(false); // volta ao estado normal depois do alert
-    }, 2000);
+
+  const verificarTicket = () => {
+    const existe = gruposDeFilas.some((grupo) => grupo.id === consulta);
+    if (existe) {
+      setTicketAtivo(consulta);
+
+      //Usamos query strings para enviar o ticket na URL
+      const query = new URLSearchParams();
+      query.set("ticket", consulta);
+      navigate(`/filas?${query.toString()}`);
+    } else {
+      NotificarErro();
+    }
   };
+  /**Eventos */
+  const handleConsultar = () => {
+    if (consulta.trim()) {
+      setCarregando(true); // ativa loader e muda cor do botão
+      setTimeout(() => {
+        verificarTicket();
+        setCarregando(false); // volta ao estado normal depois do alert
+      }, 2000);
+    } else {
+      setInputVazio(true);
+    }
+  };//FFYQ17
+  function alterarValor(e) {
+    setConsulta(e.target.value.toUpperCase());
+    setInputVazio(false);
+  }
   return (
     <div>
       <Header />
@@ -36,18 +58,25 @@ export default function ConsultarPage() {
           <section>
             <h1 className="tituloBold">Consultar ticket</h1>
             <p className="text-[14px] text-[var(--cor-texto-secundario)]">
-              Acompanhe suas filas existentes
+              Acompanhe suas filas consultando abaixo:
             </p>
           </section>
           <section className="caixa-lista itemsSection">
             <h1 className="font-bold text-[14px]">
-              Código do Ticket (ex: K9F2C)
+              Código do Ticket (ex: F4M917)
             </h1>
             <input
               type="text"
-              className="pl-[20px]"
+              className={`pl-[20px] `}
+              value={consulta}
               placeholder="Digite o código do ticket..."
+              onChange={(e) => alterarValor(e)}
             />
+            {inputVazio && (
+              <p className="text-[12px] text-[var(--cor-erro)]">
+                Preencha o campo acima!!
+              </p>
+            )}
             <p className="text-[12px] text-[var(--cor-texto-secundario)]">
               Caso o código do ticket tenha expirado ou você o tenha esquecido,
               por favor, entre em uma nova fila clicando no botão nova fila.
