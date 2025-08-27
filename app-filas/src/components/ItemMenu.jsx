@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigateGlobal } from "../contexts/NavigateProvider";
 
 export default function ItemMenu({ titulo, Icon , onClick, irPara}) {
-  const navigate = useNavigateGlobal();
+  const {navigate} = useNavigateGlobal();
   //o useLocation serve para sabermos em qual rota estamos
   const location = useLocation();
   const activo = location.pathname === irPara;

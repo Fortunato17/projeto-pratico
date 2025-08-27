@@ -2,13 +2,12 @@
 import * as Icons from "lucide-react";
 //Componentes
 import Button from "./Button";
-import { useEffect, useState } from "react";
 //Dados fictícios vindo de um provider
 import { useFilas } from "../contexts/FilasProvider";
 
 export default function Filas({ ticket }) {
-  const [posicoes, setPosicoes] = useState([]);
-  const { gruposDeFilas } = useFilas();
+  const { gruposDeFilas, handleExcluirFila } = useFilas();
+
   //VARIÁVEIS
   const minhasFilas =
     gruposDeFilas.find((grupo) => grupo?.id === ticket)?.filas || [];
@@ -17,10 +16,10 @@ export default function Filas({ ticket }) {
   function reduzirpessoa(valor) {
     return valor - 1;
   }
-
+  
   return (
     <ul className="itemsSection">
-      {minhasFilas.map((fila) => {
+      {minhasFilas.map((fila, index) => {
         /**VARIÁVEIS DERIVADAS */
         const { empresa, servico } = fila;
         const {
@@ -32,7 +31,7 @@ export default function Filas({ ticket }) {
         } = empresa;
         const { nome: nomeServico, tipo: tipoServico, pessoasNaFila } = servico;
         return (
-          <li key={empresa.id} className="relative overflow-hidden caixa-lista">
+          <li key={fila.id} className="relative overflow-hidden caixa-lista">
             <div className="absolute top-0 left-0 w-full bg-[var(--cor-amarelo)] h-[20px]"></div>
             <div className="pt-[15px] flex flex-col gap-[10px]">
               <section>
@@ -61,7 +60,12 @@ export default function Filas({ ticket }) {
                   </p>
                 </div>
               </section>
-              <Button variante="excluir">
+              <Button
+                variante="excluir"
+                onClick={() => {
+                  handleExcluirFila(ticket, fila.id);
+                }}
+              >
                 <Icons.X />
                 Sair desta fila
               </Button>

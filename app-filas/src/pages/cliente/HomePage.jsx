@@ -1,4 +1,3 @@
-
 // Ícones
 import * as Icons from "lucide-react";
 
@@ -11,9 +10,11 @@ import Carrossel from "../../components/cliente/carrossel/Carrossel";
 import CardHome from "../../components/cliente/CardHome";
 // Hooks
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function HomePage() {
-  const navigate = useNavigateGlobal();
+  const { navigate } = useNavigateGlobal();
+  
+
   return (
     <div>
       <Header>
@@ -27,10 +28,7 @@ export default function HomePage() {
             precisar estar no local.
           </p>
           <div className="flex flex-col items-center w-full gap-[10px] mt-[10px]">
-            <Button
-              variante="novaFilaHead"
-              onClick={() => navigate("/nova-fila")}
-            >
+            <Button variante="novaFilaHead" onClick={()=> navigate("/nova-fila")}>
               <Icons.Plus />
               Nova fila
             </Button>

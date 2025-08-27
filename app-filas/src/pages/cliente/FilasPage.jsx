@@ -6,58 +6,68 @@ import Main from "../../components/Main";
 import Footer from "../../components/Footer";
 import Button from "../../components/Button";
 import Filas from "../../components/Filas";
-//Contexts
+// Contexts
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
-import { useSearchParams } from "react-router-dom";
+import { useFilas } from "../../contexts/FilasProvider";
 
 export default function FilasPage() {
-  const navigate = useNavigateGlobal();
-
-  //Usamos query strings para pegar o ticket da URL
-  const [useParams] = useSearchParams();
-  const ticket = useParams.get("ticket");
+  const { handleExcluirTicket } = useFilas();
+  const { navigate, searchParams } = useNavigateGlobal();
+  const ticket = searchParams.get("ticket");
 
   return (
     <div>
       <Header />
       <Main>
         <section className="itemsSectionBig">
-          <section>
-            {!ticket ? (
-              <>
-                <section className="flex items-center gap-[10px] mb-[10px]">
-                  <Icons.AlertCircle
-                    size={40}
-                    className="text-[var(--cor-Aviso)]"
-                  />
-                  <h1 className="tituloBold">Você ainda não tem fila!</h1>
-                </section>
-                <p>
-                  Toque em <span className="font-bold">Adicionar fila</span>{" "}
-                  para criar sua primeira fila e controlar o seu tempo.
-                </p>
-              </>
-            ) : (
-              <>
+          {!ticket ? (
+            <>
+              {/* Sem filas ainda */}
+              <section className="flex items-center gap-[10px] mb-[10px]">
+                <Icons.AlertCircle
+                  size={40}
+                  className="text-[var(--cor-Aviso)]"
+                />
+                <h1 className="tituloBold">Você ainda não tem fila!</h1>
+              </section>
+              <p>
+                Clique em <span className="font-bold">Criar fila</span> para
+                começar a controlar o seu tempo.
+              </p>
+              <Button
+                variante="confirmar"
+                onClick={() => navigate("/nova-fila")}
+              >
+                <Icons.Plus /> Criar fila
+              </Button>
+            </>
+          ) : (
+            <>
+              {/* Já tem filas */}
+              <div className="flex justify-between items-center">
                 <h1 className="tituloBold">Minhas filas</h1>
-                <p>
-                  Ticket: <span className="destaque">{ticket}</span>
-                </p>
-              </>
-            )}
-          </section>
-          {/*Filas */}
-          <Filas ticket={ticket} />
-          {ticket && (
-            <Button
-              variante="confirmar"
-              onClick={() =>
-                navigate("/nova-fila", { state: { fromFilasPage: true } })
-              }
-            >
-              {" "}
-              <Icons.Plus /> Adicionar fila
-            </Button>
+
+                <Button onClick={() => handleExcluirTicket(ticket)} variante="excluir2">
+                  <Icons.X /> Excluir
+                </Button>
+              </div>
+              <p>
+                Ticket: <span className="destaque">{ticket}</span>
+              </p>
+
+              {/* Filas ativas */}
+              <Filas ticket={ticket} />
+
+              {/* Adicionar nova fila */}
+              <Button
+                variante="confirmar"
+                onClick={() =>
+                  navigate("/nova-fila", { state: { fromFilasPage: true } })
+                }
+              >
+                <Icons.Plus /> Adicionar fila
+              </Button>
+            </>
           )}
         </section>
       </Main>

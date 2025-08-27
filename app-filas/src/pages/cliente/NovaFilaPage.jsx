@@ -2,7 +2,7 @@
 import { CheckCheck, Search } from "lucide-react";
 //Hoocks
 import { useState } from "react";
-import { useNavigateGlobal } from "../../contexts/NavigateProvider";
+
 //Components
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -18,7 +18,7 @@ import { NotificarSucesso } from "../../uiHelpers/Notificar";
 
 //Contexts
 import { useFilas } from "../../contexts/FilasProvider";
-import { useLocation } from "react-router-dom";
+import { useNavigateGlobal } from "../../contexts/NavigateProvider";
 
 export default function NovaFilaPage() {
   /**Hooks */
@@ -30,23 +30,26 @@ export default function NovaFilaPage() {
   });
   const [visivel, setVisivel] = useState(false);
   const [carregando, setCarregando] = useState(false);
-  const navigate = useNavigateGlobal();
-  const location = useLocation();
-  console.log();
-  const { addFilas, criarGrupoFilas, ticketAtivo } = useFilas();
+  const { navigate, location } = useNavigateGlobal();
+
+  const { handleAddFilas, handleCriarGrupoFilas, ticketAtivo } = useFilas();
   /**Eventos */
   const handleConfirmar = () => {
-    setCarregando(true); // ativa loader e muda cor do botão
+    setCarregando(true); // ativa loader e muda cor do botão FN7I17
     setTimeout(() => {
       NotificarSucesso();
 
-      location.state?.fromFilasPage
-        ? addFilas(itemSelecionado)
-        : criarGrupoFilas(itemSelecionado);
+      let ticket;
+      if (location.state?.fromFilasPage) {
+        handleAddFilas(itemSelecionado);
+        ticket = ticketAtivo; // se veio da página de filas, usamos o ticket ativo
+      } else {
+        ticket = handleCriarGrupoFilas(itemSelecionado);
+      }
 
       //Usamos query strings para enviar o ticket na URL
       const query = new URLSearchParams();
-      query.set('ticket',ticketAtivo)
+      query.set("ticket", ticket);
       navigate(`/filas?${query.toString()}`);
       setCarregando(false); // volta ao estado normal depois do alert
     }, 2000);

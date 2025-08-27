@@ -7,9 +7,9 @@ export default function AppProvider({ children }) {
   return (
     <>
       <NotificacoesProvider>
-        <FilasProvider>
-          <NavigateProvider>{children}</NavigateProvider>
-        </FilasProvider>
+        <NavigateProvider>
+          <FilasProvider>{children}</FilasProvider>
+        </NavigateProvider>
       </NotificacoesProvider>
     </>
   );

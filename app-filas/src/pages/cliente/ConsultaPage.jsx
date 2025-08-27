@@ -16,18 +16,18 @@ import { NotificarErro } from "../../uiHelpers/Notificar";
 
 export default function ConsultarPage() {
   const [carregando, setCarregando] = useState(false);
-  const [consulta, setConsulta] = useState();
+  const [consulta, setConsulta] = useState("");
   const [inputVazio, setInputVazio] = useState(false);
   const { gruposDeFilas, setTicketAtivo } = useFilas();
-  const navigate = useNavigateGlobal();
+  const { navigate } = useNavigateGlobal();
 
+  //Usamos query strings para enviar o ticket na URL
+  const query = new URLSearchParams();
   const verificarTicket = () => {
     const existe = gruposDeFilas.some((grupo) => grupo.id === consulta);
     if (existe) {
       setTicketAtivo(consulta);
 
-      //Usamos query strings para enviar o ticket na URL
-      const query = new URLSearchParams();
       query.set("ticket", consulta);
       navigate(`/filas?${query.toString()}`);
     } else {
@@ -45,7 +45,7 @@ export default function ConsultarPage() {
     } else {
       setInputVazio(true);
     }
-  };//FFYQ17
+  };
   function alterarValor(e) {
     setConsulta(e.target.value.toUpperCase());
     setInputVazio(false);
