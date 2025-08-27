@@ -21,11 +21,12 @@ export function FilasProvider({ children }) {
 
   useEffect(() => {
     //Se o grupo com o ticket não existir, redirecionamos para a página de filas
-    if (!gruposDeFilas.some((g) => g?.id === ticketAtivo)) {
+    console.log("Verificando ticket ativo:", ticketAtivo);
+    if (ticketAtivo && !gruposDeFilas.some((g) => g?.id === ticketAtivo)) {
       setTicketAtivo(""); // Limpa o ticket ativo
       navigate("/filas", { replace: true });
     }
-  }, [gruposDeFilas]);
+  }, [gruposDeFilas, ticketAtivo, navigate]);
   //Criar novoGrupoDeFila
   function handleCriarGrupoFilas(dadosDaInsti) {
     const ticket = gerarCodigo();
