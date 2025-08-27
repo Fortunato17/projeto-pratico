@@ -21,7 +21,7 @@ export function FilasProvider({ children }) {
 
   useEffect(() => {
     //Se o grupo com o ticket não existir, redirecionamos para a página de filas
-    console.log("Verificando ticket ativo:", ticketAtivo);
+    
     if (ticketAtivo && !gruposDeFilas.some((g) => g?.id === ticketAtivo)) {
       setTicketAtivo(""); // Limpa o ticket ativo
       navigate("/filas", { replace: true });
