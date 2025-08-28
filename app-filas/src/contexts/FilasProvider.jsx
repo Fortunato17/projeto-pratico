@@ -3,17 +3,17 @@ import { createContext, useContext, useEffect, useState } from "react";
 //Utils
 import { gerarCodigo } from "../utils/GerarCodigo";
 import { useNavigateGlobal } from "./NavigateProvider";
-import { replace, useNavigate } from "react-router-dom";
 
 const FilasContext = createContext();
 export function FilasProvider({ children }) {
   const [gruposDeFilas, setGruposDeFilas] = useState(
     JSON.parse(localStorage.getItem("GrupoDeFilas")) || []
   );
-  const [ticketAtivo, setTicketAtivo] = useState("");
 
+  const [ticketAtivo, setTicketAtivo] = useState("");
   const { navigate } = useNavigateGlobal();
 
+  //Guardar as filas no localStorage
   useEffect(
     () => localStorage.setItem("GrupoDeFilas", JSON.stringify(gruposDeFilas)),
     [gruposDeFilas]
@@ -21,12 +21,18 @@ export function FilasProvider({ children }) {
 
   useEffect(() => {
     //Se o grupo com o ticket não existir, redirecionamos para a página de filas
-    
+
     if (ticketAtivo && !gruposDeFilas.some((g) => g?.id === ticketAtivo)) {
       setTicketAtivo(""); // Limpa o ticket ativo
       navigate("/filas", { replace: true });
     }
   }, [gruposDeFilas, ticketAtivo, navigate]);
+
+  /**
+   * Primeiro temos o GruposDeFilas dentro dele temos cada grupoDeFilas, e neste últimos temos a lista de filas
+   */
+
+
   //Criar novoGrupoDeFila
   function handleCriarGrupoFilas(dadosDaInsti) {
     const ticket = gerarCodigo();
@@ -52,9 +58,10 @@ export function FilasProvider({ children }) {
   }
 
   //Excluir filas
+  //grupoTicket é o id do grupo
   function handleExcluirFila(grupoTicket, idFila) {
     setGruposDeFilas((prev) => {
-      const novoGrupo = prev
+      const novosGrupos = prev
         .map((grupo) => {
           const novasFilas = grupo.filas.filter((fila) => fila.id !== idFila);
           return grupo?.id === grupoTicket
@@ -67,7 +74,7 @@ export function FilasProvider({ children }) {
         //Elimina grupos com 0 filas
         .filter((grupo) => grupo.filas.length > 0);
 
-      return novoGrupo;
+      return novosGrupos;
     });
   }
 

@@ -5,18 +5,14 @@ import Button from "./Button";
 //Dados fictícios vindo de um provider
 import { useFilas } from "../contexts/FilasProvider";
 
-export default function Filas({ ticket }) {
-  const { gruposDeFilas, handleExcluirFila } = useFilas();
-
-  //VARIÁVEIS
-  const minhasFilas =
-    gruposDeFilas.find((grupo) => grupo?.id === ticket)?.filas || [];
+export default function Filas({ ticket, minhasFilas }) {
+  const { handleExcluirFila } = useFilas();
 
   //EVENTOS
   function reduzirpessoa(valor) {
     return valor - 1;
   }
-  
+
   return (
     <ul className="itemsSection">
       {minhasFilas.map((fila, index) => {

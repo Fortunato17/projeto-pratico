@@ -11,9 +11,14 @@ import { useNavigateGlobal } from "../../contexts/NavigateProvider";
 import { useFilas } from "../../contexts/FilasProvider";
 
 export default function FilasPage() {
-  const { handleExcluirTicket } = useFilas();
-  const { navigate, searchParams } = useNavigateGlobal();
+  const { gruposDeFilas, handleExcluirTicket, setTicketAtivo } = useFilas();
+  const { navigate, searchParams  } = useNavigateGlobal();
   const ticket = searchParams.get("ticket");
+
+  //VARIÁVEIS
+  const minhasFilas =
+    gruposDeFilas.find((grupo) => grupo?.id === ticket)?.filas || [];
+  const limiteDeFila = minhasFilas.length >= 6;
 
   return (
     <div>
@@ -47,7 +52,10 @@ export default function FilasPage() {
               <div className="flex justify-between items-center">
                 <h1 className="tituloBold">Minhas filas</h1>
 
-                <Button onClick={() => handleExcluirTicket(ticket)} variante="excluir2">
+                <Button
+                  onClick={() => handleExcluirTicket(ticket)}
+                  variante="excluir2"
+                >
                   <Icons.X /> Excluir
                 </Button>
               </div>
@@ -56,17 +64,29 @@ export default function FilasPage() {
               </p>
 
               {/* Filas ativas */}
-              <Filas ticket={ticket} />
+              <Filas ticket={ticket} minhasFilas={minhasFilas} />
 
               {/* Adicionar nova fila */}
-              <Button
-                variante="confirmar"
-                onClick={() =>
-                  navigate("/nova-fila", { state: { fromFilasPage: true } })
-                }
-              >
-                <Icons.Plus /> Adicionar fila
-              </Button>
+              {!limiteDeFila && (
+                <Button
+                  variante="confirmar"
+                  onClick={() => {
+                    setTicketAtivo(ticket);
+                    navigate("/nova-fila", { state: { fromFilasPage: true } });
+                  }}
+                >
+                  <Icons.Plus /> Adicionar fila
+                </Button>
+              )}
+              {limiteDeFila && (
+                <p className="flex items-center gap-[5px]">
+                  <Icons.AlertCircle
+                    size={30}
+                    className="text-[var(--cor-Aviso)]"
+                  />
+                  Chegou ao limite de filas!
+                </p>
+              )}
             </>
           )}
         </section>

@@ -33,10 +33,10 @@ export default function Carrossel() {
           <li
             key={index}
             onClick={() => setItem(index)}
-            className={`w-4 h-4 rounded-full border-[1.5px] ${
+            className={`w-4 h-4 rounded-full border-[1.5px] border-solid border-[var(--cor-primaria)] ${
               index === item
-                ? "bg-[var(--cor-primaria)]"
-                : "border-solid border-[var(--cor-primaria)]"
+                ? "bg-[var(--cor-primaria)] cursor-default"
+                : ""
             }   cursor-pointer`}
           ></li>
         ))}
