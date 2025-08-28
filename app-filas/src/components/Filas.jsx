@@ -52,7 +52,7 @@ export default function Filas({ ticket, minhasFilas }) {
                 <div>
                   <h2>Sua posição:</h2>
                   <p className="flex  justify-end  text-[24px] destaque">
-                    {reduzirpessoa(pessoasNaFila)}
+                    {pessoasNaFila}
                   </p>
                 </div>
               </section>
