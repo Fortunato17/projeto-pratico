@@ -129,7 +129,6 @@ export const servicos = [
   { id: 17, empresaId: 9, nome: "Depósito", tipo: "A" },
   { id: 18, empresaId: 9, nome: "Levantamento", tipo: "B" },
   { id: 19, empresaId: 9, nome: "Abertura de Conta", tipo: "C" },
-  
 ];
 
 // ----------------------
@@ -150,7 +149,7 @@ export const filas = servicos.map((servico) => ({
   empresaId: servico.empresaId,
   nome: servico.nome,
   tipo: servico.tipo,
-  pessoasNaFila: Math.floor(Math.random() * 10),
+  pessoasNaFila: Math.floor(Math.random() * 10) + 1,
 }));
 
 // Retorna filas de uma empresa

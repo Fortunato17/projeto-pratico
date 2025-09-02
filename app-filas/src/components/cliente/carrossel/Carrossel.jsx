@@ -7,8 +7,8 @@ export default function Carrossel() {
     const intevalo = setInterval(() => {
       setItem((prev) => (prev === CarrosselItems.length - 1 ? 0 : prev + 1));
     }, 5000);
-    return () => clearInterval(intevalo);// limpa o anterior sempre que item mudar
-  }, [item]);// item muda → reinicia o intervalo
+    return () => clearInterval(intevalo); // limpa o anterior sempre que item mudar
+  }, [item]); // item muda → reinicia o intervalo
 
   return (
     <div className="flex flex-col gap-[10px] m-[-20px]">
@@ -34,9 +34,7 @@ export default function Carrossel() {
             key={index}
             onClick={() => setItem(index)}
             className={`w-4 h-4 rounded-full border-[1.5px] border-solid border-[var(--cor-primaria)] ${
-              index === item
-                ? "bg-[var(--cor-primaria)]  cursor-auto"
-                : ""
+              index === item ? "bg-[var(--cor-primaria)]  cursor-auto" : ""
             }   cursor-pointer`}
           ></li>
         ))}

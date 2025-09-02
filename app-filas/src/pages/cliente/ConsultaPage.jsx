@@ -23,6 +23,7 @@ export default function ConsultarPage() {
 
   //Usamos query strings para enviar o ticket na URL
   const query = new URLSearchParams();
+
   const verificarTicket = () => {
     const existe = gruposDeFilas.some((grupo) => grupo.id === consulta);
     if (existe) {

@@ -9,14 +9,16 @@ import Filas from "../../components/Filas";
 // Contexts
 import { useNavigateGlobal } from "../../contexts/NavigateProvider";
 import { useFilas } from "../../contexts/FilasProvider";
+import { useState } from "react";
 
 export default function FilasPage() {
   const { gruposDeFilas, handleExcluirTicket, setTicketAtivo } = useFilas();
-  const { navigate, searchParams  } = useNavigateGlobal();
+  const { navigate, searchParams } = useNavigateGlobal();
   const ticket = searchParams.get("ticket");
 
   //VARIÁVEIS
   const minhasFilas =
+  //Encontra o grupo de filas com o ticket correspondente ou retorna um array vazio
     gruposDeFilas.find((grupo) => grupo?.id === ticket)?.filas || [];
   const limiteDeFila = minhasFilas.length >= 6;
 
