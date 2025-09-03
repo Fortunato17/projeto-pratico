@@ -8,14 +8,33 @@ import { useState, useEffect } from "react";
 
 export default function Filas({ ticket, minhasFilas }) {
   const { handleExcluirFila } = useFilas();
-  const [posicao, setPosicao] = useState({});
+  const [posicao, setPosicao] = useState(
+    JSON.parse(localStorage.getItem("posições")) || {}
+  );
+
+  useEffect(
+    () => localStorage.setItem("posições", JSON.stringify(posicao)),
+    [posicao]
+  );
 
   useEffect(() => {
-    const posicaoInicial = {};
-    minhasFilas.forEach(
-      (fila) => (posicaoInicial[fila.id] = fila.servico.pessoasNaFila)
-    );
-    setPosicao(posicaoInicial);
+    setPosicao((prev) => {
+      const posicaoInicial = { ...prev };
+      // Adiciona novas posições para filas que existem no ticket atual
+      minhasFilas.forEach((fila) => {
+        if (!(fila.id in posicaoInicial)) {
+          posicaoInicial[fila.id] = fila.servico.pessoasNaFila;
+        }
+      });
+
+      // Remove filas que não existem mais neste ticket
+      for (let id in posicaoInicial) {
+        if (!minhasFilas.some((fila) => fila.id === id)) {
+          delete posicaoInicial[id];
+        }
+      }
+      return posicaoInicial;
+    });
   }, [minhasFilas]);
 
   useEffect(() => {
@@ -35,7 +54,7 @@ export default function Filas({ ticket, minhasFilas }) {
 
   return (
     <ul className="itemsSection">
-      {minhasFilas.map((fila, index) => {
+      {minhasFilas.map((fila) => {
         /**VARIÁVEIS DERIVADAS */
         const { empresa, servico } = fila;
         const {
@@ -61,7 +80,7 @@ export default function Filas({ ticket, minhasFilas }) {
               />
               <h1>
                 Prepare-se: a sua vez está a chegar. Por favor, dirija-se ao
-                atendimento
+                local de atendimento.
               </h1>
             </div>
           );
