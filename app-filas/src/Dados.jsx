@@ -138,6 +138,7 @@ export const servicos = [
 // Pega o nome da província
 //?. (chamado de optional chaining-encadeamento opcional)- Significa: Se o valor antes disso não for null ou undefined, continue. Senão, retorne undefined e não quebre o código.
 export function pegarProvincia(id) {
+  
   return provincias.find((provincia) => provincia.id === id)?.nome;
 }
 
