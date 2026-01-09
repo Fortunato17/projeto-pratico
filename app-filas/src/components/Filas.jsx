@@ -53,7 +53,7 @@ export default function Filas({ ticket, minhasFilas }) {
   }, []);
 
   return (
-    <ul className="itemsSection">
+    <ul className="itemsFila">
       {minhasFilas.map((fila) => {
         /**VARIÁVEIS DERIVADAS */
         const { empresa, servico } = fila;

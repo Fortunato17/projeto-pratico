@@ -56,7 +56,7 @@ export default function ConsultarPage() {
       <Header />
       <Main>
         <section className="itemsSectionBig">
-          <section>
+          <section className="text-center">
             <h1 className="tituloBold">Consultar ticket</h1>
             <p className="text-[14px] text-[var(--cor-texto-secundario)]">
               Acompanhe suas filas consultando abaixo:
@@ -82,24 +82,25 @@ export default function ConsultarPage() {
               Caso o código do ticket tenha expirado ou você o tenha esquecido,
               por favor, entre em uma nova fila clicando no botão nova fila.
             </p>
-            <div className="relative">
-              <Button
-                variante="confirmar"
-                onClick={handleConsultar}
-                loading={carregando}
-              >
+            <section className="btnAlter">
+              <div className="relative w-full">
+                <Button
+                  variante="confirmar"
+                  onClick={handleConsultar}
+                  loading={carregando}
+                >
+                  {" "}
+                  <Icons.Search /> Consultar
+                </Button>
+                {carregando && (
+                  <QueueLoader className="absolute top-[50%] left-[50%] translate-x-[-50%] -translate-y-[50%]" />
+                )}
+              </div>
+              <Button variante="novaFila" onClick={() => navigate("/nova-fila")}>
                 {" "}
-                <Icons.Search /> Consultar
+                <Icons.Plus /> Nova fila
               </Button>
-              {carregando && (
-                <QueueLoader className="absolute top-[50%] left-[50%] translate-x-[-50%] -translate-y-[50%]" />
-              )}
-            </div>
-
-            <Button variante="novaFila" onClick={() => navigate("/nova-fila")}>
-              {" "}
-              <Icons.Plus /> Nova fila
-            </Button>
+            </section>
           </section>
         </section>
       </Main>

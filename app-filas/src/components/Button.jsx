@@ -1,4 +1,4 @@
-export default function Button({ children, loading, variante = "", onClick,  }) {
+export default function Button({ children, loading, variante = "", onClick}) {
   const baseClasses =
     "flex items-center justify-center gap-[5px] w-full p-[8px] rounded-[10px] font-semibold botao-clique";
   const variantes = {

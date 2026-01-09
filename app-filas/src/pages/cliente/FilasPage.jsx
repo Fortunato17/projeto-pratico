@@ -18,7 +18,7 @@ export default function FilasPage() {
 
   //VARIÁVEIS
   const minhasFilas =
-  //Encontra o grupo de filas com o ticket correspondente ou retorna um array vazio
+    //Encontra o grupo de filas com o ticket correspondente ou retorna um array vazio
     gruposDeFilas.find((grupo) => grupo?.id === ticket)?.filas || [];
   const limiteDeFila = minhasFilas.length >= 6;
 
@@ -26,7 +26,7 @@ export default function FilasPage() {
     <div>
       <Header />
       <Main>
-        <section className="itemsSectionBig">
+        <section className="itemsSectionFila">
           {!ticket ? (
             <>
               {/* Sem filas ainda */}
@@ -51,37 +51,40 @@ export default function FilasPage() {
           ) : (
             <>
               {/* Já tem filas */}
+                <h1 className="tituloBold flex justify-center">Minhas filas</h1>
               <div className="flex justify-between items-center">
-                <h1 className="tituloBold">Minhas filas</h1>
-
+                <p>
+                  Ticket: <span className="destaque">{ticket}</span>
+                </p>
                 <Button
                   onClick={() => handleExcluirTicket(ticket)}
                   variante="excluir2"
                 >
-                  <Icons.X /> Excluir
+                  <Icons.X /> Excluir Ticket
                 </Button>
               </div>
-              <p>
-                Ticket: <span className="destaque">{ticket}</span>
-              </p>
 
               {/* Filas ativas */}
               <Filas ticket={ticket} minhasFilas={minhasFilas} />
 
               {/* Adicionar nova fila */}
               {!limiteDeFila && (
-                <Button
-                  variante="confirmar"
-                  onClick={() => {
-                    setTicketAtivo(ticket);
-                    navigate("/nova-fila", { state: { fromFilasPage: true } });
-                  }}
-                >
-                  <Icons.Plus /> Adicionar fila
-                </Button>
+                <div className="w-[100%] max-w-[500px] m-auto">
+                  <Button
+                    variante="confirmar"
+                    onClick={() => {
+                      setTicketAtivo(ticket);
+                      navigate("/nova-fila", {
+                        state: { fromFilasPage: true },
+                      });
+                    }}
+                  >
+                    <Icons.Plus /> Adicionar fila
+                  </Button>
+                </div>
               )}
               {limiteDeFila && (
-                <p className="flex items-center gap-[5px]">
+                <p className="flex items-center justify-center gap-[5px] w-[100%]">
                   <Icons.AlertCircle
                     size={30}
                     className="text-[var(--cor-Aviso)]"

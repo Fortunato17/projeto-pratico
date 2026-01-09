@@ -1,8 +1,5 @@
 /*CONTAINER, ALINHAMENTO, aqui fica a organização estrutural da interface*/
-.container{
-    max-width: 1200px;
-    margin:  auto;
-}
+
 .titulo {
   font-size: 24px;
   line-height: 30px;
@@ -26,12 +23,24 @@
 .itemsSectionBig {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
   gap: 20px;
 }
 .itemsSection {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
+}
+.itemsSectionFila{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+ 
+  margin: auto;
+  gap: 20px;
 }
 /*INPUTS*/
 input {

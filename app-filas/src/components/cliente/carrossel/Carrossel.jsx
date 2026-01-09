@@ -11,8 +11,8 @@ export default function Carrossel() {
   }, [item]); // item muda → reinicia o intervalo
 
   return (
-    <div className="flex flex-col gap-[10px] m-[-20px]">
-      <ul className="relative h-[700px] overflow-hidden flex items-center justify-center">
+    <div className="flex flex-col gap-[10px] m-[-20px] md:m-[10px] ">
+      <ul className="relative h-[700px] overflow-hidden flex items-center justify-center md:rounded-[10px]">
         {CarrosselItems.map((slide, index) => {
           const classeBase = `absolute h-full duration-700 ease-in-out`;
           return (

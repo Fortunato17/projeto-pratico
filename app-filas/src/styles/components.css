@@ -1,3 +1,8 @@
+.container{
+    max-width: 1000px;
+    margin:  auto;
+    
+}
 /*BOTÕES*/
 .botao-clique {
   transition: all 0.1s ease;
@@ -70,10 +75,39 @@
 }
 .itemMenu{
   display: flex;
-  gap: 10px;
+  gap: 2px;
   margin: 10px 0;
   cursor: pointer;
 }
 .itemMenu:hover{
   color: var(--corHoverTexto);
 }
+/*Consulta, novafila */
+.btnAlter{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .btnAlter{
+    flex-direction: row;
+  }
+}
+/*lista de filas e outras*/
+.itemsFila{
+  display: inline-grid;
+  gap: 10px;
+  
+}
+/* Tablet – até 2 colunas */
+@media (min-width: 768px){
+  .itemsFila {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Desktop – até 3 colunas */

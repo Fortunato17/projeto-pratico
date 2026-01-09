@@ -21,9 +21,10 @@
   --cor-hoverBtn1: #26da9e;
 
    /* BREAKPOINTS */
-  --bp-mobile: 480px;
-  --bp-tablet: 768px;
-  --bp-desktop: 1024px;
+  --bp-mobile: 480px;/*sm*/
+  --bp-tablet: 768px;/*md*/
+  --bp-desktop: 1024px;/*lg*/
 
 
 }
+

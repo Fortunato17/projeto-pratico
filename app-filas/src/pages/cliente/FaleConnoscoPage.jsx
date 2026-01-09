@@ -11,7 +11,7 @@ export default function FaleConnoscoPage() {
       <Main>
         <section className="flex flex-col gap-[20px]">
           <div>
-            <h1 className="titulo font-bold">Fale Connosco</h1>
+            <h1 className="tituloBold">Fale Connosco</h1>
             <p>
               Se tiveres dúvidas, sugestões ou precisares de ajuda com o uso da
               nossa plataforma, é só entrar em contacto connosco. A tua opinião

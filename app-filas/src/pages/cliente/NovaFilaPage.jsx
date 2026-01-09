@@ -61,8 +61,8 @@ export default function NovaFilaPage() {
       <Main>
         <section className="itemsSectionBig">
           {/**Seção de instituição*/}
-          <section className="itemsSection">
-            <h1 className="tituloBold">Nova fila</h1>
+          
+            <h1 className="tituloBold m-auto">Nova fila</h1>
             <h2 className="subTitulo">Instituição</h2>
             {!visivel && (
               <>
@@ -96,7 +96,7 @@ export default function NovaFilaPage() {
               setPesquisa={setPesquisa}
               filtro={filtro}
             />
-          </section>
+          
 
           {/*Card de serviços */}
           {itemSelecionado.empresa && (

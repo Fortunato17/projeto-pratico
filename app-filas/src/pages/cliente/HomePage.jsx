@@ -27,12 +27,12 @@ export default function HomePage() {
             digitais, acompanhe sua posição em tempo real e ganhe tempo. Sem
             precisar estar no local.
           </p>
-          <div className="flex flex-col items-center w-full gap-[10px] mt-[10px]">
-            <Button variante="novaFilaHead" onClick={()=> navigate("/nova-fila")}>
+          <div className="btnAlter mt-[10px]">
+            <Button variante="novaFilaHead" onClick={()=> navigate("/nova-fila")} >
               <Icons.Plus />
               Nova fila
             </Button>
-            <Button variante="consultar" onClick={() => navigate("/consultar")}>
+            <Button variante="consultar" onClick={() => navigate("/consultar")} >
               <Icons.Search />
               Consultar
             </Button>
@@ -40,7 +40,7 @@ export default function HomePage() {
         </div>
       </Header>
       <Main>
-        <section className="itemsSection ">
+        <section className="itemsSection">
           <h2 className="titulo">
             Somos a sua melhor <span className="font-bold italic">ESCOLHA</span>
           </h2>
@@ -58,7 +58,7 @@ export default function HomePage() {
           <h2 className="titulo">
             <span className="font-bold italic">FILAS</span> online em:
           </h2>
-          <div className="flex flex-col gap-[20px] text-[var(--cor-branco)] text-[24px] ">
+          <div className="flex flex-col gap-[20px] text-[var(--cor-branco)] text-[24px] md:grid md:grid-cols-2">
             <CardHome
               titulo="Hospitais/Clínicas"
               Icon={Icons.Hospital}
