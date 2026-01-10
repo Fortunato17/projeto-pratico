@@ -36,11 +36,7 @@ export default function Menu({ className }) {
       {(tamTela >= 768 || dropdownAberto === "Menu") && (
         <div className={`${tamTela >= 768 ? "flex gap-[10px] :":"caixaMenu absolute w-full top-[112%] left-0 z-10"} `}>
           <ItemMenu titulo={"Home"} Icon={Icons.Home} irPara="/"/>
-          <ItemMenu
-            titulo={"Fale Connosco"}
-            Icon={Icons.MessageSquareText}
-            irPara="/fale-connosco"
-          />
+          
           <ItemMenu
             titulo={`${tamTela >= 768 ?"":"Nova fila"}`}
             Icon={Icons.Plus}
